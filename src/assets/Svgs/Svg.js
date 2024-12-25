@@ -1,0 +1,15 @@
+import Onboarding1 from "./Onboarding1.svg";
+import Onboarding2 from "./Onboarding2.svg";
+import Onboarding3 from "./Onboarding3.svg";
+import Google from "./Googlee.svg";
+import Facebook from "./facebook.svg";
+import Profile from "./profile1.svg";
+export const  Svgs = {
+    Onboarding1: Onboarding1,
+    Onboarding2: Onboarding2,
+    Onboarding3: Onboarding3,
+    Google: Google,
+    Profile: Profile,
+    Facebook: Facebook,
+
+}
