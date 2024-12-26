@@ -1512,18 +1512,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@callstack/react-theme-provider@npm:^3.0.9":
-  version: 3.0.9
-  resolution: "@callstack/react-theme-provider@npm:3.0.9"
-  dependencies:
-    deepmerge: ^3.2.0
-    hoist-non-react-statics: ^3.3.0
-  peerDependencies:
-    react: ">=16.3.0"
-  checksum: f888ef0b8f993d393a9d49864f75b04b5cf7259e72f290ec570fc5e314315f75c979b03b391243a72578ab55db4ffcdd4dc9dc1a2f8ec2b516cabb958971a85e
-  languageName: node
-  linkType: hard
-
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
@@ -1572,40 +1560,6 @@ __metadata:
   version: 8.57.1
   resolution: "@eslint/js@npm:8.57.1"
   checksum: 2afb77454c06e8316793d2e8e79a0154854d35e6782a1217da274ca60b5044d2c69d6091155234ed0551a1e408f86f09dd4ece02752c59568fa403e60611e880
-  languageName: node
-  linkType: hard
-
-"@gorhom/bottom-sheet@npm:^5.0.6":
-  version: 5.0.6
-  resolution: "@gorhom/bottom-sheet@npm:5.0.6"
-  dependencies:
-    "@gorhom/portal": 1.0.14
-    invariant: ^2.2.4
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-native": "*"
-    react: "*"
-    react-native: "*"
-    react-native-gesture-handler: ">=2.16.1"
-    react-native-reanimated: ">=3.16.0"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-native":
-      optional: true
-  checksum: 46e25c973763afab7532386b2624e4a6d08c732691dad7c93a2325d9f4f84ba1b65262ee0f43a104f7c01a94a5cfcb4195483784fa7a86609de42c3f4ae0bbd6
-  languageName: node
-  linkType: hard
-
-"@gorhom/portal@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@gorhom/portal@npm:1.0.14"
-  dependencies:
-    nanoid: ^3.3.1
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 227bb96a2db854ab29bb9da8d4f3823c7f7448358de459709dd1b78522110da564c9a8734c6bc7d7153ed7c99320e0fb5d60b420c2ebb75ecaf2f0d757f410f9
   languageName: node
   linkType: hard
 
@@ -2696,7 +2650,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@svgr/babel-plugin-transform-react-native-svg@npm:8.1.0, @svgr/babel-plugin-transform-react-native-svg@npm:^8.1.0":
+"@svgr/babel-plugin-transform-react-native-svg@npm:8.1.0":
   version: 8.1.0
   resolution: "@svgr/babel-plugin-transform-react-native-svg@npm:8.1.0"
   peerDependencies:
@@ -4433,7 +4387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-convert@npm:^1.9.0, color-convert@npm:^1.9.3":
+"color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
   dependencies:
@@ -4465,23 +4419,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-string@npm:^1.6.0, color-string@npm:^1.9.0":
+"color-string@npm:^1.9.0":
   version: 1.9.1
   resolution: "color-string@npm:1.9.1"
   dependencies:
     color-name: ^1.0.0
     simple-swizzle: ^0.2.2
   checksum: c13fe7cff7885f603f49105827d621ce87f4571d78ba28ef4a3f1a104304748f620615e6bf065ecd2145d0d9dad83a3553f52bb25ede7239d18e9f81622f1cc5
-  languageName: node
-  linkType: hard
-
-"color@npm:^3.1.2":
-  version: 3.2.1
-  resolution: "color@npm:3.2.1"
-  dependencies:
-    color-convert: ^1.9.3
-    color-string: ^1.6.0
-  checksum: f81220e8b774d35865c2561be921f5652117638dcda7ca4029262046e37fc2444ac7bbfdd110cf1fd9c074a4ee5eda8f85944ffbdda26186b602dd9bb05f6400
   languageName: node
   linkType: hard
 
@@ -5014,13 +4958,6 @@ __metadata:
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
   checksum: edb65dd0d7d1b9c40b2f50219aef30e116cedd6fc79290e740972c132c09106d2e80aa0bc8826673dd5a00222d4179c84b36a790eef63a4c4bca75a37ef90804
-  languageName: node
-  linkType: hard
-
-"deepmerge@npm:^3.2.0":
-  version: 3.3.0
-  resolution: "deepmerge@npm:3.3.0"
-  checksum: 4322195389e0170a0443c07b36add19b90249802c4b47b96265fdc5f5d8beddf491d5e50cbc5bfd65f85ccf76598173083863c202f5463b3b667aca8be75d5ac
   languageName: node
   linkType: hard
 
@@ -8616,7 +8553,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -9365,7 +9302,6 @@ __metadata:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
-    "@gorhom/bottom-sheet": ^5.0.6
     "@react-native-async-storage/async-storage": ^2.1.0
     "@react-native/babel-preset": 0.75.4
     "@react-native/eslint-config": 0.75.4
@@ -9375,7 +9311,6 @@ __metadata:
     "@react-navigation/native": ^7.0.14
     "@react-navigation/native-stack": ^7.2.0
     "@reduxjs/toolkit": ^2.5.0
-    "@svgr/babel-plugin-transform-react-native-svg": ^8.1.0
     "@types/react": ^18.2.6
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
@@ -9388,9 +9323,10 @@ __metadata:
     react-native: 0.75.4
     react-native-animatable: ^1.4.0
     react-native-confirmation-code-field: ^7.4.0
+    react-native-device-info: ^14.0.2
     react-native-gesture-handler: ^2.21.2
     react-native-pager-view: ^6.6.1
-    react-native-paper: ^5.12.5
+    react-native-ratings: ^8.1.0
     react-native-raw-bottom-sheet: ^3.0.0
     react-native-reanimated: ^3.16.5
     react-native-responsive-fontsize: ^0.5.1
@@ -9400,6 +9336,7 @@ __metadata:
     react-native-svg: ^15.10.1
     react-native-svg-transformer: ^1.5.0
     react-native-swiper: ^1.6.0
+    react-native-switch: ^1.5.1
     react-native-tab-view: ^4.0.5
     react-native-vector-icons: ^10.2.0
     react-redux: ^9.2.0
@@ -9409,7 +9346,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"nanoid@npm:3.3.8, nanoid@npm:^3.3.1":
+"nanoid@npm:3.3.8":
   version: 3.3.8
   resolution: "nanoid@npm:3.3.8"
   bin:
@@ -10605,7 +10542,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.0, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -10844,6 +10781,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-device-info@npm:^14.0.2":
+  version: 14.0.2
+  resolution: "react-native-device-info@npm:14.0.2"
+  peerDependencies:
+    react-native: "*"
+  checksum: c1825a31514f0de08947de7876a361e53b3449fc84e34aace9b881a77f7ecf85e58b3c04eaa8b46c5d4d1fb911d95a73b229d2b98c5bce61bc5be5b89e071ec9
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:^2.21.2":
   version: 2.21.2
   resolution: "react-native-gesture-handler@npm:2.21.2"
@@ -10878,19 +10824,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-paper@npm:^5.12.5":
-  version: 5.12.5
-  resolution: "react-native-paper@npm:5.12.5"
+"react-native-ratings@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "react-native-ratings@npm:8.1.0"
   dependencies:
-    "@callstack/react-theme-provider": ^3.0.9
-    color: ^3.1.2
-    use-latest-callback: ^0.1.5
+    lodash: ^4.17.15
   peerDependencies:
     react: "*"
     react-native: "*"
-    react-native-safe-area-context: "*"
-    react-native-vector-icons: "*"
-  checksum: 35ce56e0bb19c46ce85adc47a504527b7ec455d1a15f3ace0d6fd438abd51b1fe30e1b44351950e16d6376ddbc18ecc94b558e267767d0a9fd886a5f66a4c322
+  checksum: 34aa4e7ff09e537d5c8fb5b5bc98470c0723d7c0fff8954e39de371cdfa5ae3aa4af636ea44d508751f5dcaca6f80ee363fffd9c34a1bd8d8f7a9d8a23d82d15
   languageName: node
   linkType: hard
 
@@ -11002,6 +10944,17 @@ __metadata:
   dependencies:
     prop-types: ^15.5.10
   checksum: 21e7a270dce6d249f718377a8aa2578c9a89b2b076710f6a60dc849ace5b47ade9e071345607947e738c0fdb06b17d9dad6ef99a8f76d7072b13bf3655026225
+  languageName: node
+  linkType: hard
+
+"react-native-switch@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "react-native-switch@npm:1.5.1"
+  dependencies:
+    prop-types: ^15.6.0
+  peerDependencies:
+    react-native: ">=0.29"
+  checksum: 0ee7af977fac9fce5a5eac1981be9db80c527d0499c2149a40d848811bfd489048864a7bcc34f537f1dc011ef778e5495bd5f96d678c71cd8215616f0403fc29
   languageName: node
   linkType: hard
 
@@ -13248,15 +13201,6 @@ __metadata:
   dependencies:
     prepend-http: ^1.0.1
   checksum: 03316acff753845329652258c16d1688765ee34f7d242a94dadf9ff6e43ea567ec062cec7aa27c37f76f2c57f95e0660695afff32fb97b527591c7340a3090fa
-  languageName: node
-  linkType: hard
-
-"use-latest-callback@npm:^0.1.5":
-  version: 0.1.11
-  resolution: "use-latest-callback@npm:0.1.11"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: cc6df404a4ed3a39d0eb014a815c2e568a6abbe8c5ff09f9205a08bf68e86201826ed633865a6056ca0fd9581e0e7e70f18ca26c592a9eaccea5d244cf283b1f
   languageName: node
   linkType: hard
 

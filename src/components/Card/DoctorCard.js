@@ -55,12 +55,12 @@ const DoctorCard = ({ item }) => {
         },
     })
     return (
-        <TouchableOpacity style={styles.doctorCard} onPress={()=> navigation.navigate(SCREENS.DOCTORDETAILS)} >
+        <TouchableOpacity style={styles.doctorCard} onPress={() => navigation.navigate(SCREENS.DOCTORDETAILS)} >
             <View style={{ flexDirection: 'row' }} >
                 <Image source={{ uri: 'https://avatar.iran.liara.run/public/48' }} style={styles.doctorImage} />
                 <View>
                     <Text style={styles.doctorName}>{item.name}</Text>
-                    <Text style={styles.specialization}>{item.specialization}</Text>
+                    <Text style={styles.specialization}>{item.specialization ? item.specialization : item.location}</Text>
                     <View style={{ flexDirection: 'row' }} >
                         <Text style={[styles.rating]}><Icon name='star' color={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} /> {item.rating}</Text>
                         <Text style={[styles.reviews]}>({item.reviews} reviews)</Text>

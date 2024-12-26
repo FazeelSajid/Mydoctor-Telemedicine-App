@@ -26,6 +26,8 @@ const CustomButton = ({
   contentContainer,
   loaderColor,
   LoaderSize,
+  keey,
+  modeContainerStyle,
 }) => {
   const { isDarkMode } = useSelector(store => store.theme);
   const renderContent = () => {
@@ -80,11 +82,12 @@ const CustomButton = ({
   return (
     <Pressable
       onPress={onPress}
+      key={keey}
       style={({pressed}) => [
         containerStyle,
         mode && {
           backgroundColor: 'transparent',
-          borderColor: isDarkMode? Colors.darkTheme.secondryBtn.BtnColor : Colors.lightTheme.secondryBtn.BtnColor,
+          borderColor: isDarkMode? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryBtn.TextColor,
           borderWidth: 1,
         },
         pressed && {opacity: 0.5, borderRadius: pressedRadius},

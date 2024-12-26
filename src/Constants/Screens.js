@@ -9,11 +9,11 @@ export const SCREENS = {
     FORGET: 'Forget',
     RESETPASSWORD: 'ResetPassword',
     HOME: 'Home',
+    FILTERS: 'Filters',
     MESSAGES: 'Messages',
     BOOKING: 'Booking',
     SEEALL: 'SeeALL',
     PROFILE: 'Profile',
-    SETTINGS: 'Settings',
     TERMSANDCONDITION: 'TermsAndCondition',
     DASHBOARD : 'dashboard',
     TABS: 'Tabs',
@@ -27,6 +27,14 @@ export const SCREENS = {
     HELPCENTER: 'HelpCenter',
     PAYMENTOPTION: 'PaymentOption',
     PASSWORDMANAGER: 'PasswordManager',
+    NOTIFICATIONSETTINGS: 'NotificationsSettings',
+    THEMESETTINGS: 'ThemeSettings',
+    MYAPPOINTMENT: 'MyAppointment',
+    CANCELAPPOINTMENT: 'CancelAppointment',
+    ADDCARD: 'AddCard',
+    REVIEWSUMMARY: 'ReviewSummary',
+    PAYMENTSUCCESS: 'PaymentSuccess',
+
     
 
 }

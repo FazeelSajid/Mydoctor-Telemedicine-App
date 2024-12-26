@@ -18,10 +18,31 @@ const doctors = [
   { id: '3', name: 'Dr. Johnson', specialization: 'Pediatrician', rating: 4.8, reviews: 280 },
   { id: '4', name: 'Dr. Nkechi Okeli', specialization: 'Oncologist', rating: 4.3, reviews: 130 },
 ];
+const ambulances = [
+  { id: '1', name: 'LifeLine Ambulance', location: 'Victoria Island, Lagos', rating: 4.9, reviews: 320 },
+  { id: '2', name: 'SwiftAid Ambulance', location: 'Wuse Zone, Abuja', rating: 4.7, reviews: 150 },
+  { id: '3', name: '24/7 Emergency Response', location: 'GRA, Port Harcourt', rating: 4.8, reviews: 180 },
+  { id: '4', name: 'RapidMed Ambulance', location: 'Bompai, Kano', rating: 4.6, reviews: 140 },
+];
+const pharmacies = [
+  { id: '1', name: 'MedPlus Pharmacy', location: 'Main Street, Lagos', rating: 4.7, reviews: 120 },
+  { id: '2', name: 'HealthMart', location: 'Market Road, Abuja', rating: 4.5, reviews: 95 },
+  { id: '3', name: 'Green Cross Pharmacy', location: 'Unity Avenue, Port Harcourt', rating: 4.6, reviews: 110 },
+  { id: '4', name: 'Royal Pharmacy', location: 'Ring Road, Kano', rating: 4.8, reviews: 200 },
+];
+const hospitals = [
+  { id: '1', name: 'Lagoon Hospital', location: 'Ikoyi, Lagos', rating: 4.5, reviews: 500 },
+  { id: '2', name: 'National Hospital', location: 'Central Area, Abuja', rating: 4.6, reviews: 400 },
+  { id: '3', name: 'Port Harcourt Teaching Hospital', location: 'University Road, Port Harcourt', rating: 4.7, reviews: 350 },
+  { id: '4', name: 'Aminu Kano Teaching Hospital', location: 'Zaria Road, Kano', rating: 4.4, reviews: 300 },
+];
+
 
 const Home = ({navigation}) => {
   const { isDarkMode } = useSelector(store => store.theme);
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('Doctors')
+  const [flatlistArray, setFlatListArray] = useState(doctors)
 
 
 
@@ -72,13 +93,6 @@ const Home = ({navigation}) => {
       color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
       fontFamily: Fonts.Medium
     },
-    card: {
-      flexDirection: 'row',
-      padding: wp(4),
-      backgroundColor: '#fff',
-      borderRadius: wp(3),
-      elevation: 2
-    },
     doctorImage: {
       width: wp(12),
       height: wp(12),
@@ -86,7 +100,7 @@ const Home = ({navigation}) => {
       marginRight: wp(4)
     },
 
-    CategoryLabel:{color: Colors.lightTheme.secondryTextColor, fontFamily: Fonts.Medium, fontSize: RFPercentage(1.6), textAlign: 'center'}
+    CategoryLabel:{color: Colors.lightTheme.secondryTextColor, fontFamily: Fonts.Medium, fontSize: RFPercentage(1.5), textAlign: 'center'}
   });
 
 
@@ -113,7 +127,7 @@ const Home = ({navigation}) => {
               ? Colors.darkTheme.primaryColor
               : Colors.lightTheme.primaryColor
           } placeholder={'Search doctor, Pharmacy...'} style={{ width: wp(70) }} value={searchQuery} onChangeText={setSearchQuery} containerStyle={{ paddingHorizontal: wp(5) }} />
-        <CustomButton icon={'tune-variant'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColor} containerStyle={{ backgroundColor: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor, padding: wp(4), borderRadius: wp(2) }} />
+        <CustomButton icon={'tune-variant'} iconSize={RFPercentage(3.2)} onPress={()=> navigation.navigate(SCREENS.FILTERS)}  iconColor={isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColor} containerStyle={{ backgroundColor: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor, padding: wp(4), borderRadius: wp(2) }} />
       </View>
 
       {/* Upcoming Schedule */}
@@ -126,34 +140,36 @@ const Home = ({navigation}) => {
       </View>
       <View style={[styles.rowView, {marginBottom: hp(2), paddingHorizontal: wp(6)}]} >
         <View style={{alignItems : 'center', justifyContent: 'center'}} >
-      <CustomButton icon={'stethoscope'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} containerStyle={{alignItems: 'center', justifyContent: 'center'}} />
-          <Text style={styles.CategoryLabel} >Doctor</Text>
+      <CustomButton icon={'stethoscope'} iconSize={RFPercentage(3.2)} onPress={()=> {
+        setFlatListArray(doctors)
+        setSelectedCategory('Doctors')}} text={'Doctors'} textStyle={styles.CategoryLabel} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} containerStyle={{alignItems: 'center', justifyContent: 'center'}} />
         </View>
         <View>
-        <CustomButton icon={'pill'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
-        <Text style={styles.CategoryLabel} >Pharmacy</Text>
+        <CustomButton icon={'pill'} iconSize={RFPercentage(3.2)} onPress={()=> {
+          setFlatListArray(pharmacies)
+          setSelectedCategory('Pharmacies')}} text={'Pharmacies'} textStyle={styles.CategoryLabel} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
 
         </View>
-        <View>
-        <CustomButton icon={'ambulance'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
-        <Text style={styles.CategoryLabel} >Doctor</Text>
-
+        <View style={{alignItems:'center'}} >
+        <CustomButton icon={'ambulance'} text={'Ambulances'} onPress={()=> {
+          setFlatListArray(ambulances)
+          setSelectedCategory('Ambulances')}} textStyle={styles.CategoryLabel} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
         </View>
         <View>
-        <CustomButton icon={'hospital-building'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
-        <Text style={styles.CategoryLabel} >Doctor</Text>
-
+        <CustomButton icon={'hospital-building'} onPress={()=> {setSelectedCategory('Hospitals')
+          setFlatListArray(hospitals)
+        }}  iconSize={RFPercentage(3.2)} text={'Hospitals'} textStyle={styles.CategoryLabel} iconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
         </View>
 
       </View>
       {/* Top Doctors */}
       <View style={styles.rowView} >
-        <Text style={styles.sectionTitle}>Top Doctors</Text>
+        <Text style={styles.sectionTitle}>Top {selectedCategory}</Text>
         <CustomButton text={'See all'} textStyle={{ color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor }} onPress={()=> navigation.navigate(SCREENS.SEEALLDOCTORS)} />
       </View>
 
       <FlatList
-        data={doctors}
+        data={flatlistArray}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (

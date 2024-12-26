@@ -2,10 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SCREENS } from '../Constants/Screens';
 import CustomBottomTabBar from '../components/CustomBottomTabBar';
-import Messages from '../Screens/Dashboard/BottomTabsScreen/Messages';
-import Home from '../Screens/Dashboard/BottomTabsScreen/Home';
-import Booking from '../Screens/Dashboard/BottomTabsScreen/Booking';
-import Profile from '../Screens/Dashboard/BottomTabsScreen/Profile';
+import Messages from '../Screens/BottomTabs/BottomTabsScreen/Messages';
+import Home from '../Screens/BottomTabs/BottomTabsScreen/Home';
+import Profile from '../Screens/BottomTabs/BottomTabsScreen/Profile';
+import AllAppointment from '../Screens/BottomTabs/BottomTabsScreen/AllAppointment';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +27,7 @@ const BottomTabNavigator = () => {
                     headerShown: false,
                     title: "Messages",
                 }} />
-            <Tab.Screen name={SCREENS.BOOKING} component={Booking}
+            <Tab.Screen name={SCREENS.BOOKING} component={AllAppointment}
                 options={{
                     headerShown: false,
                     title: "Booking",

@@ -18,7 +18,8 @@ import { Svgs } from '../../../assets/Svgs/Svg';
 import TxtInput from '../../../components/TextInput/Txtinput';
 import CustomButton from '../../../components/Buttons/customButton';
 import { SCREENS } from '../../../Constants/Screens';
-
+import { RFPercentage } from 'react-native-responsive-fontsize';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, setEmail, password, setPassword, isDarkMode, handleNext, styles }) => {
 
  
@@ -34,29 +35,29 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
       </View>
       <TxtInput
         placeholder={'Full Name'}
-        style={{ width: scaleWidth(330), marginBottom: scaleHeight(20) }}
-        containerStyle={{ paddingHorizontal: scaleWidth(10) }}
+        style={{ width: wp(88), marginBottom: hp(2.3) }}
+        containerStyle={{ paddingHorizontal: wp(3) }}
         value={name}
         onChangeText={setName}
       />
       <TxtInput
         placeholder={'Gender'}
-        style={{ width: scaleWidth(330), marginBottom: scaleHeight(20) }}
-        containerStyle={{ paddingHorizontal: scaleWidth(10) }}
+        style={{ width: wp(88), marginBottom: hp(2.3) }}
+        containerStyle={{ paddingHorizontal: wp(3) }}
         value={gender}
         onChangeText={setGender}
       />
       <TxtInput
         placeholder={'Email'}
-        style={{ width: scaleWidth(330), marginBottom: scaleHeight(20) }}
-        containerStyle={{ paddingHorizontal: scaleWidth(10) }}
+        style={{ width: wp(88), marginBottom: hp(2.3) }}
+        containerStyle={{ paddingHorizontal: wp(3) }}
         value={email}
         onChangeText={setEmail}
       />
       <TxtInput
         placeholder={'Password'}
-        style={{ width: scaleWidth(330), marginBottom: scaleHeight(20) }}
-        containerStyle={{ paddingHorizontal: scaleWidth(10) }}
+        style={{ width: wp(88), marginBottom: hp(2.3) }}
+        containerStyle={{ paddingHorizontal: wp(3) }}
         value={password}
         onChangeText={setPassword}
       />
@@ -86,14 +87,14 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
 const SignUp1 = React.memo(({ phone_no, setPhone_no, isDarkMode, handleSignUp, navigation, styles }) => {
   return (
     <View style={styles.contentContainer}>
-      <Text style={[styles.heading, { marginTop: scaleHeight(30) }]}>Enter Your Phone Number</Text>
+      <Text style={[styles.heading, { marginTop: hp(4) }]}>Enter Your Phone Number</Text>
       <TxtInput
         rightIcon={'phone'}
         rightIconSize={normalizeFontSize(25)}
         rightIconColor={isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor}
         placeholder={'Phone Number'}
-        style={{ width: scaleWidth(330) }}
-        containerStyle={{ paddingHorizontal: scaleWidth(10) }}
+        style={{ width: wp(88) }}
+        containerStyle={{ paddingHorizontal: wp(3) }}
         value={phone_no}
         onChangeText={setPhone_no}
       />
@@ -111,7 +112,7 @@ const SignUp1 = React.memo(({ phone_no, setPhone_no, isDarkMode, handleSignUp, n
         <CustomButton svg={<Svgs.Facebook height={scaleHeight(40)} width={scaleWidth(40)} />} />
         <CustomButton svg={<Svgs.Google height={scaleHeight(40)} width={scaleWidth(40)} />} />
       </View>
-      <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: scaleHeight(20)}} >
+      <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: hp(2.3)}} >
         <Text style={[styles.OrTxt, {textAlign: 'center'}]}>
         Already have an account?
       </Text>
@@ -212,28 +213,28 @@ const Signup = ({ navigation }) => {
       alignSelf: 'center',
       justifyContent: 'space-between',
       // backgroundColor: 'green',
-      height: scaleHeight(20),
-      width: scaleWidth(130)
+      height: hp(2.3),
+      width: wp(35)
 
     },
     seprator: {
-      height: scaleHeight(3),
+      height: hp(0.4),
       backgroundColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.BorderGrayColor,
-      width: scaleWidth(50),
+      width: wp(14),
     },
     contentContainer: {
       flex: 1,
-      paddingHorizontal: scaleWidth(20),
+      paddingHorizontal: wp(5.7),
     },
     heading: {
-      fontSize: normalizeFontSize(20),
+      fontSize:  RFPercentage(2.5),
       color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
       fontFamily: Fonts.Bold,
-      marginTop: scaleHeight(10),
-      marginBottom: scaleHeight(10),
+      marginTop:  RFPercentage(1.6),
+      marginBottom:  RFPercentage(1.6),
     },
     subText: {
-      fontSize: normalizeFontSize(13),
+      fontSize: RFPercentage(1.7),
       fontFamily: Fonts.Regular,
       color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
       // backgroundColor: 'green'
@@ -241,23 +242,23 @@ const Signup = ({ navigation }) => {
     profileImage: {
       borderWidth: 1,
       borderColor: isDarkMode ? Colors.darkTheme.BorderGrayColor:Colors.lightTheme.BorderGrayColor,
-      width: scaleWidth(100),
-      height: scaleHeight(100),
-      borderRadius: scaleWidth(100) / 2,
+      width: wp(27),
+      height: hp(12.4),
+      borderRadius: wp(27) / 2,
       alignSelf: 'center',
       marginBottom: 30,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColor,
-      marginTop: scaleHeight(30)
+      marginTop: hp(4)
     },
     btn: {
       backgroundColor: isDarkMode ? Colors.darkTheme.primaryBtn.BtnColor : Colors.lightTheme.primaryBtn.BtnColor,
-      paddingVertical: scaleHeight(13),
-      borderRadius: scaleWidth(6),
+      paddingVertical: hp(1.7),
+      borderRadius: wp(2),
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: scaleHeight(30),
+      marginTop: hp(4),
       // borderColor:  isDarkMode ? Colors.darkTheme.primaryBtn.BtnColor : Colors.lightTheme.primaryBtn.BtnColor,
       // borderWidth: scaleHeight(2)
     },
@@ -278,7 +279,7 @@ const Signup = ({ navigation }) => {
       color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor,
       fontSize: normalizeFontSize(14),
       fontFamily: Fonts.Regular,
-      // paddingTop: scaleHeight(10)
+      // paddingTop:  RFPercentage(1.6)
     },
 
   })

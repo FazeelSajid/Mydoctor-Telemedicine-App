@@ -4,12 +4,14 @@ import Onboarding3 from "./Onboarding3.svg";
 import Google from "./Googlee.svg";
 import Facebook from "./facebook.svg";
 import Profile from "./profile1.svg";
+import DeleteMSVG from "./DeleteModalSvg.svg";
 export const  Svgs = {
-    Onboarding1: Onboarding1,
-    Onboarding2: Onboarding2,
-    Onboarding3: Onboarding3,
-    Google: Google,
-    Profile: Profile,
-    Facebook: Facebook,
+    Onboarding1,
+    Onboarding2,
+    Onboarding3,
+    Google,
+    Profile,
+    Facebook,
+    DeleteMSVG
 
 }

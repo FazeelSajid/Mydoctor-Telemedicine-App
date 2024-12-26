@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Change icon set as required
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Change icon set as required
 import { Fonts } from '../../Constants/Fonts';
-
+import StackHeader from '../../components/Header/StackHeader';
+import TxtInput from '../../components/TextInput/Txtinput';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+import { useSelector } from 'react-redux';
+import { Colors } from '../../Constants/themeColors';
 const HelpCenterScreen = () => {
   const [activeTab, setActiveTab] = useState('FAQ'); // Tracks FAQ or Contact Us
   const [expandedIndex, setExpandedIndex] = useState(null); // Tracks expanded FAQ item
+  const [isExpanded, setIsExpanded] = useState('');
   const [activeCategory, setActiveCategory] = useState('All'); // Tracks active FAQ category
-
+  const [searchQuery, setSearchQuery] = useState('')
+  const { isDarkMode } = useSelector(store => store.theme);
   const FAQData = [
     {
       category: 'All',
-      questions: [
-        { question: 'How can I schedule an appointment?', answer: 'Scheduling an appointment on a telemedicine app typically involves a user-friendly and intuitive process.' },
-        { question: 'How do I cancel an appointment?', answer: 'You can cancel your appointment directly from the app by going to your scheduled appointments and selecting "Cancel".' },
-        { question: 'Can I reschedule an appointment?', answer: 'Yes, you can reschedule an appointment using the app by selecting "Reschedule".' },
-        { question: 'How do I update my personal information?', answer: 'You can update your profile information through the "Profile" section in the app settings.' },
-        { question: 'What should I do if I experience technical difficulties?', answer: 'If you encounter technical issues, please reach out to customer support through the app or website.' }
-      ]
     },
     {
       category: 'General',
@@ -43,9 +44,9 @@ const HelpCenterScreen = () => {
   
 
   const contactData = [
-    { icon: 'headset-mic', label: 'Customer Service', value: '' },
+    { icon: 'headset', label: 'Customer Service', value: '' },
     { icon: 'whatsapp', label: 'Whatsapp', value: '0810 666 6666' },
-    { icon: 'language', label: 'Website', value: '' },
+    { icon: 'web', label: 'Website', value: '' },
     { icon: 'facebook', label: 'Facebook', value: '' },
     { icon: 'twitter', label: 'Twitter', value: '' },
     { icon: 'instagram', label: 'Instagram', value: '' },
@@ -53,23 +54,144 @@ const HelpCenterScreen = () => {
 
   // Filter questions based on the active category
   const filteredFAQs =
-    activeCategory === 'All'
-      ? FAQData.find((item) => item.category === 'All').questions
-      : FAQData.find((item) => item.category === activeCategory)?.questions || [];
+  activeCategory === 'All'
+    ? FAQData.flatMap((item) => item.questions || []) // Combine all questions from categories except "All"
+    : FAQData.find((item) => item.category === activeCategory)?.questions || [];
+
 
   const handleToggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+  const toggleExpand = (index) => {
+    setIsExpanded(isExpanded === index? null: index);
+  };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: isDarkMode? Colors.darkTheme.backgroundColor: Colors.lightTheme.backgroundColor,
+    },
+    tabs: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      borderBottomWidth: 1,
+      borderBottomColor: isDarkMode? Colors.darkTheme.BorderGrayColor: Colors.lightTheme.BorderGrayColor,
+    },
+    tab: {
+      paddingVertical: hp(1.5),
+      paddingHorizontal: wp(4),
+    },
+    activeTab: {
+      borderBottomWidth: 5,
+      borderBottomColor: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor,
+      borderBottomEndRadius: 5,
+      borderBottomStartRadius: 5,
+      
+    },
+    tabText: {
+      fontSize: RFPercentage(2),
+      fontFamily: Fonts.Regular,
+      color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
+    },
+    activeTabText: {
+      color: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor,
+    },
+    content: {
+      flex: 1,
+    },
+    categoryTabs: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginVertical: hp(2),
+    },
+    categoryTab: {
+      paddingVertical: hp(1),
+      paddingHorizontal: wp(8),
+      borderRadius: wp(2), // Responsive radius
+      backgroundColor: isDarkMode? Colors.darkTheme.secondryColor: Colors.lightTheme.secondryColor,
+      borderColor: isDarkMode? Colors.darkTheme.secondryColor : Colors.lightTheme.BorderGrayColor,
+      borderWidth: wp(0.3),
+    },
+    activeCategoryTab: {
+      backgroundColor: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor,
+    },
+    categoryTabText: {
+      fontSize: RFPercentage(1.8),
+      fontFamily: Fonts.Regular,
+      color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
+    },
+    activeCategoryTabText: {
+      color: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.secondryColor,
+    },
+    faqContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingVertical: wp(3),
+      paddingHorizontal: wp(4),
+    },
+    faqQuestion: {
+      fontSize: RFPercentage(1.93),
+      fontFamily: Fonts.Medium,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor,
+    },
+    faqAnswer: {
+      fontSize: RFPercentage(1.8),
+      fontFamily: Fonts.Regular,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor,
+      paddingLeft: wp(4),
+      borderTopColor: isDarkMode?Colors.darkTheme.BorderGrayColor: Colors.lightTheme.BorderGrayColor,
+      borderTopWidth: 1,
+      paddingVertical: hp(2),
+    },
+    contactContainer: {
+        marginBottom: hp(1.7),
+        borderColor: isDarkMode? Colors.darkTheme.BorderGrayColor:Colors.lightTheme.BorderGrayColor, 
+        borderWidth: 1, 
+        borderRadius: 6, 
+        paddingVertical: wp(3),
+        paddingHorizontal: wp(4),
+
+      },
+      contactHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+      contactLabel: {
+        flex: 1,
+        marginLeft: wp(2),
+        fontSize: RFPercentage(1.93),
+        fontFamily: Fonts.Medium,
+        color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor
+      },
+      expandableContent: {
+        marginTop: hp(1),
+        paddingLeft: 34,
+        borderTopColor: isDarkMode?Colors.darkTheme.BorderGrayColor: Colors.lightTheme.BorderGrayColor,
+      borderTopWidth: 1,
+      paddingTop: hp(1)
+      },
+      contactValue: {
+        fontSize: RFPercentage(1.8),
+        fontFamily: Fonts.Regular,
+        color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor
+
+      },
+  });
+  
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Icon name="arrow-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Help Center</Text>
-      </View>
+    <SafeAreaView style={styles.container}>
+      
+      <StackHeader title={'Help Centere'} />
+
+      <TxtInput  rightIcon={'magnify'} rightIconSize={RFPercentage(3)}
+                    rightIconColor={
+                        isDarkMode
+                            ? Colors.darkTheme.primaryColor
+                            : Colors.lightTheme.primaryColor
+                    } placeholder={'Need help...'} style={{ width: wp(90), alignSelf:'center'  }} value={searchQuery} onChangeText={setSearchQuery} containerStyle={{ paddingHorizontal: wp(5) }} />
 
       {/* Tabs */}
       <View style={styles.tabs}>
@@ -116,16 +238,20 @@ const HelpCenterScreen = () => {
           {/* FAQ List */}
           <FlatList
             data={filteredFAQs}
+            keyboardShouldPersistTaps='handled'
+            style={{paddingHorizontal: wp(5)}}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => (
-              <TouchableOpacity onPress={() => handleToggleExpand(index)}>
-                
+              <TouchableOpacity style={{borderColor: isDarkMode? Colors.darkTheme.BorderGrayColor:Colors.lightTheme.BorderGrayColor, borderWidth: 1, borderRadius: 6, marginBottom: hp(2)}} onPress={() => handleToggleExpand(index)}>
+
                 <View style={styles.faqContainer}>
                   <Text style={styles.faqQuestion}>{item.question}</Text>
                   <Icon
                     name={expandedIndex === index ? 'expand-less' : 'expand-more'}
                     size={24}
-                    color="#000"
+                    color={isDarkMode
+                        ? Colors.darkTheme.primaryColor
+                        : Colors.lightTheme.primaryColor}
                   />
                 </View>
                 {expandedIndex === index && <Text style={styles.faqAnswer}>{item.answer}</Text>}
@@ -137,121 +263,40 @@ const HelpCenterScreen = () => {
         <FlatList
           data={contactData}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
+          style={{paddingHorizontal: wp(5), marginTop: hp(2)}}
+          renderItem={({ item, index }) => (
             <View style={styles.contactContainer}>
-              <Icon name={item.icon} size={24} color="#4CAF50" />
-              <View style={styles.contactInfo}>
-                <Text style={styles.contactLabel}>{item.label}</Text>
-                {item.value ? <Text style={styles.contactValue}>{item.value}</Text> : null}
+            {/* Header */}
+            <TouchableOpacity onPress={()=>toggleExpand(index)} style={styles.contactHeader}>
+              <MaterialCommunityIcons name={item.icon} size={24} color={isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor} />
+              <Text style={styles.contactLabel}>{item.label}</Text>
+              <MaterialCommunityIcons
+                name={isExpanded === index  ? 'chevron-up' : 'chevron-down'}
+                size={24}
+                color={isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}
+              />
+            </TouchableOpacity>
+      
+            {/* Expandable Content */}
+            {isExpanded === index && (
+              <View style={styles.expandableContent}>
+                {item.value ? (
+                  <Text style={styles.contactValue}>{item.value}</Text>
+                ) : (
+                  <Text style={styles.contactValue}>No additional information</Text>
+                )}
               </View>
-            </View>
+            )}
+          </View>
+
+
+
           )}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default HelpCenterScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  headerText: {
-    fontSize: 18,
-    fontFamily: Fonts.Medium,
-    marginLeft: 16,
-  },
-  tabs: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  tab: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-  activeTab: {
-    borderBottomWidth: 2,
-    borderBottomColor: '#4CAF50',
-  },
-  tabText: {
-    fontSize: 16,
-    fontFamily: Fonts.Regular,
-    color: '#000',
-  },
-  activeTabText: {
-    color: '#4CAF50',
-  },
-  content: {
-    flex: 1,
-  },
-  categoryTabs: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 8,
-  },
-  categoryTab: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
-  },
-  activeCategoryTab: {
-    backgroundColor: '#4CAF50',
-  },
-  categoryTabText: {
-    fontSize: 14,
-    fontFamily: Fonts.Regular,
-    color: '#000',
-  },
-  activeCategoryTabText: {
-    color: '#fff',
-  },
-  faqContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-  },
-  faqQuestion: {
-    fontSize: 14,
-    fontFamily: Fonts.Medium,
-    color: '#000',
-  },
-  faqAnswer: {
-    fontSize: 14,
-    fontFamily: Fonts.Regular,
-    color: '#666',
-    paddingLeft: 16,
-    marginTop: 4,
-  },
-  contactContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-  },
-  contactInfo: {
-    marginLeft: 16,
-  },
-  contactLabel: {
-    fontSize: 14,
-    fontFamily: Fonts.Medium,
-    color: '#000',
-  },
-  contactValue: {
-    fontSize: 12,
-    fontFamily: Fonts.Regular,
-    color: '#666',
-  },
-});

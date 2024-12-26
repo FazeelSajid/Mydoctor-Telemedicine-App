@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native';
 import CustomLayout from '../../components/CustomLayout'
 import { Colors } from '../../Constants/themeColors';
-import { normalizeFontSize, scaleHeight, scaleWidth } from '../../utils/responsive';
+// import { normalizeFontSize, scaleHeight, scaleWidth } from '../../utils/responsive';
 import { Fonts } from '../../Constants/Fonts';
 import CustomButton from '../../components/Buttons/customButton';
 import { setDarkMode } from '../../redux/Slices/Theme';
 import { SCREENS } from '../../Constants/Screens';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const Welcome = ({navigation}) => {
   const { isDarkMode } = useSelector(store => store.theme);
@@ -25,9 +27,9 @@ const Welcome = ({navigation}) => {
     },
     heading:{
       color: isDarkMode ? Colors.darkTheme.primaryTextColor :Colors.lightTheme.primaryTextColor,
-      fontSize : normalizeFontSize(23),
+      fontSize : RFPercentage(3),
       fontFamily: Fonts.Medium,
-      width: scaleWidth(300),
+      // width: wp(100),
       textAlign: 'center',
       letterSpacing: 1
     },
@@ -36,36 +38,36 @@ const Welcome = ({navigation}) => {
     },
     subHeading:{
       color: isDarkMode? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor,
-      fontSize : normalizeFontSize(13),
+      fontSize : RFPercentage(2),
       fontFamily: Fonts.Regular,
       textAlign: 'center',
-      width: scaleWidth(350),
-      marginVertical: scaleHeight(18)
+      width: wp(100),
+      marginVertical: hp(2.1)
     },
  btn: {
       backgroundColor: isDarkMode? Colors.darkTheme.primaryBtn.BtnColor : Colors.lightTheme.primaryBtn.BtnColor,
-      paddingVertical: scaleHeight(13),
-      borderRadius: scaleWidth(6),
+      paddingVertical: hp(1.7),
+      borderRadius: wp(2),
       justifyContent: 'center',
       alignItems: 'center',
     },
     btnText:{
       color: isDarkMode? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor,
       fontFamily: Fonts.Bold,
-      fontSize: normalizeFontSize(14),
+      fontSize: RFPercentage(1.9),
     }
     
   })
   return (
     <SafeAreaView style={styles.container} >
       <View style={styles.contentContainer}  >
-      <Svgs.Onboarding1 height={scaleHeight(400)} />
+      <Svgs.Onboarding1 height={hp(55)} />
       <Text style={styles.heading} >Your <Text style={styles.highlightedText} >Everyday Doctor</Text> Appointment Medical App</Text>
       <Text style={styles.subHeading} >Talk to doctors, buy medications or request an ambulance with ease.</Text>
       </View>
-      <View style={{paddingHorizontal: scaleWidth(20), marginBottom: scaleHeight(10),}}>
+      <View style={{paddingHorizontal: wp(7),}}>
       <CustomButton containerStyle={styles.btn} text={'Sign Up'} textStyle={styles.btnText} onPress={()=>dispatch(setDarkMode(!isDarkMode)) }   />
-      <CustomButton containerStyle={[styles.btn,{marginTop: scaleHeight(20)}]}  text={'Login '} textStyle={[styles.btnText, {color :isDarkMode? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryTextColor}]} mode={true} borderColor={Colors.lightTheme.BorderGrayColor} onPress={()=>navigation.navigate(SCREENS.LOGIN)} />
+      <CustomButton containerStyle={[styles.btn,{marginTop: hp(2)}]}  text={'Login '} textStyle={[styles.btnText, {color :isDarkMode? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryTextColor}]} mode={true} borderColor={Colors.lightTheme.BorderGrayColor} onPress={()=>navigation.navigate(SCREENS.LOGIN)} />
       </View>
     </SafeAreaView>
   )

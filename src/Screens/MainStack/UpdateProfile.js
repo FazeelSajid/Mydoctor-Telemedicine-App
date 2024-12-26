@@ -92,15 +92,8 @@ const UpdateProfile = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
-            {/* Header */}
-            {/* <View style={styles.header}>
-        <TouchableOpacity>
-          <Icon name="arrow-back" size={RFPercentage(3)} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Profile</Text>
-      </View> */}
-            <StackHeader title={'Update Profile'} />
-            {/* Profile Picture Section */}
+           
+            <StackHeader title={'Profile'} />
             <View style={styles.profileContainer}>
                 <Image
                     source={{ uri: 'https://avatar.iran.liara.run/public/43' }} // Replace with actual image
@@ -111,20 +104,12 @@ const UpdateProfile = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            {/* Form Section */}
             <View style={styles.form}>
-                {/* Name */}
                 <Text style={styles.label}>Name</Text>
                 <TxtInput placeholder={'Full Name'} style={{ width: wp(90) }} value={name} onChangeText={setName} containerStyle={{ paddingHorizontal: wp(5) }} />
-                {/* Phone Number */}
                 <Text style={styles.label}>Phone Number</Text>
                 <View style={styles.row}>
-                    {/* <TextInput
-                        style={[styles.input, styles.flex]}
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                        keyboardType="phone-pad"
-                    /> */}
+                   
                     <TxtInput placeholder={'Full Name'} style={{ width: wp(75) }} value={phoneNumber} onChangeText={setPhoneNumber} containerStyle={{ paddingHorizontal: wp(5) }} />
 
                     <TouchableOpacity>
@@ -134,14 +119,7 @@ const UpdateProfile = ({ navigation }) => {
 
                 {/* Email */}
                 <Text style={styles.label}>Email</Text>
-                {/* <TextInput
-                    style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    placeholder="example@domainname.com"
-                    placeholderTextColor="#ccc"
-                /> */}
+            
                 <TxtInput placeholder={'example@domainname.com'} style={{ width: wp(90) }} value={email} onChangeText={setEmail} containerStyle={{ paddingHorizontal: wp(5) }} />
 
 
@@ -153,24 +131,12 @@ const UpdateProfile = ({ navigation }) => {
 
                 {/* Gender */}
                 <Text style={styles.label}>Gender</Text>
-                {/* <View style={styles.row}>
-                    <TextInput
-                        style={[styles.input, styles.flex]}
-                        value={gender}
-                        onChangeText={setGender}
-                        placeholder="Select"
-                        placeholderTextColor="#ccc"
-                    />
-                    <Icon name="arrow-drop-down" size={RFPercentage(3)} color="#aaa" />
-                </View> */}
+               
                 <TxtInput leftIcon={'chevron-down'} leftIconSize={RFPercentage(3)} leftIconColor={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} placeholder={'Male/Female'} style={{ width: wp(90) }} value={dateOfBirth} onChangeText={setDateOfBirth} containerStyle={{ paddingHorizontal: wp(5) }} />
 
             </View>
 
-            {/* Update Button */}
-            {/* <TouchableOpacity style={styles.updateButton}>
-                <Text style={styles.updateButtonText}>Update Profile</Text>
-            </TouchableOpacity> */}
+           
             <CustomButton containerStyle={styles.btn} text={'Update Profile'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => navigation.goBack()} />
 
 

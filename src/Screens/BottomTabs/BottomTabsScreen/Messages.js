@@ -6,11 +6,12 @@ import StackHeader from '../../../components/Header/StackHeader';
 import { useSelector } from 'react-redux';
 import { Colors } from '../../../Constants/themeColors';
 import { Fonts } from '../../../Constants/Fonts';
+import { SCREENS } from '../../../Constants/Screens';
 
 const contacts = [
   {
     id: '1',
-    name: 'Rehan Usman Jazz',
+    name: 'Rehan Sajid',
     message: 'Sehi ha',
     time: '1:04 PM',
     avatar: 'https://avatar.iran.liara.run/public/43', // Replace with actual image URL or asset
@@ -31,7 +32,7 @@ const contacts = [
   },
 ];
 
-const Messages = () => {
+const Messages = ({navigation}) => {
   const { isDarkMode } = useSelector(store => store.theme);
   const styles = StyleSheet.create({
     container: {
@@ -74,7 +75,7 @@ const Messages = () => {
   });
   
   const renderContact = ({ item }) => (
-    <TouchableOpacity style={styles.contactContainer}>
+    <TouchableOpacity style={styles.contactContainer} onPress={()=>navigation.navigate(SCREENS.CHAT)} >
       <Image source={{ uri: item.avatar }} style={styles.avatar} />
       <View style={styles.textContainer}>
         <Text style={styles.name}>{item.name}</Text>

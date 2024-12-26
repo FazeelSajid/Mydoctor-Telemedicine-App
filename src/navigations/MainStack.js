@@ -8,10 +8,17 @@ import Notifications from "../Screens/MainStack/Notifications";
 import Chat from "../Screens/MainStack/Chat";
 import UpdateProfile from "../Screens/MainStack/UpdateProfile";
 import Favourites from "../Screens/MainStack/Favourites";
-import Settings from "../Screens/MainStack/Settings";
 import PaymentOptions from "../Screens/MainStack/PaymentOptions";
 import PasswordManager from "../Screens/MainStack/PasswordManager";
 import HelpCenter from "../Screens/MainStack/HelpCenter";
+import NotificationSettings from "../Screens/MainStack/NotificationSettings";
+import MyAppointment from "../Screens/MainStack/MyAppointment";
+import CancelAppointment from "../Screens/MainStack/CancelAppointment";
+import Filters from "../Screens/MainStack/Filters";
+import AddCard from "../Screens/MainStack/AddCard";
+import ReviewSummary from "../Screens/MainStack/ReviewSummary";
+import PaymentSuccess from "../Screens/MainStack/PaymentSuccess";
+import ThemeSetting from "../Screens/MainStack/ThemeSetting";
 
 const Stack = createNativeStackNavigator()
 
@@ -31,10 +38,18 @@ const MainStack = () =>{
                     <Stack.Screen name={SCREENS.CHAT} component={Chat} />
                     <Stack.Screen name={SCREENS.UPDATEPROFILE} component={UpdateProfile} />
                     <Stack.Screen name={SCREENS.FAVORITES} component={Favourites} />
-                    <Stack.Screen name={SCREENS.SETTINGS} component={Settings} />
                     <Stack.Screen name={SCREENS.PAYMENTOPTION} component={PaymentOptions} />
                     <Stack.Screen name={SCREENS.PASSWORDMANAGER} component={PasswordManager} />
                     <Stack.Screen name={SCREENS.HELPCENTER} component={HelpCenter} />
+                    <Stack.Screen name={SCREENS.NOTIFICATIONSETTINGS} component={NotificationSettings} />
+                    <Stack.Screen name={SCREENS.THEMESETTINGS} component={ThemeSetting} />
+                    <Stack.Screen name={SCREENS.MYAPPOINTMENT} component={MyAppointment} />
+                    <Stack.Screen name={SCREENS.CANCELAPPOINTMENT} component={CancelAppointment} />
+                    <Stack.Screen name={SCREENS.FILTERS} component={Filters} />
+                    <Stack.Screen name={SCREENS.ADDCARD} component={AddCard} />
+                    <Stack.Screen name={SCREENS.REVIEWSUMMARY} component={ReviewSummary} />
+                    <Stack.Screen name={SCREENS.PAYMENTSUCCESS} component={PaymentSuccess} />
+
         </Stack.Navigator>
     )
 }

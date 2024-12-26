@@ -12,6 +12,7 @@ import { Fonts } from '../../Constants/Fonts';
 import { useSelector } from 'react-redux';
 import { normalizeFontSize, scaleHeight, scaleWidth } from '../../utils/responsive';
 import { Colors } from '../../Constants/themeColors';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const StackHeader = ({
   title,
@@ -31,7 +32,8 @@ const StackHeader = ({
   barStyle,
   headerTxtStyle,
   titleSize,
-  rightIconContainer
+  rightIconContainer,
+  rightIconPress
 }) => {
   const navigation = useNavigation();
     const { isDarkMode } = useSelector(store => store.theme);
@@ -39,7 +41,7 @@ const StackHeader = ({
           const styles = StyleSheet.create({
             header: {
               justifyContent: 'center',
-              paddingVertical: 15,
+              paddingTop: hp(1),
               paddingBottom: scaleHeight(30),
               paddingLeft: scaleWidth(20)
             },
@@ -120,7 +122,7 @@ const StackHeader = ({
             </Text>
           </View>
         )}
-        <TouchableOpacity style={[{...styles.iconContainer1, }, rightIconContainer]}>
+        <TouchableOpacity onPress={rightIconPress} style={[{...styles.iconContainer1, }, rightIconContainer]}>
           {rightIcon}
         </TouchableOpacity>
       </View>
