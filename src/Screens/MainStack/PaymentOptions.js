@@ -93,8 +93,8 @@ const PaymentOptions = ({navigation}) => {
     },
     optionText: {
       fontSize: RFPercentage(2),
-      fontFamily: Fonts.Regular,
-      color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
+      fontFamily: Fonts.Thin,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.secondryTextColor,
     },
     addText: {
       fontSize: RFPercentage(2),

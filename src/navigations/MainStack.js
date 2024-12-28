@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./BottomTabBar";
 import SeeAllDoctors from "../Screens/MainStack/SeeAllDoctors";
 import { SCREENS } from "../Constants/Screens";
-import DoctorDetails from "../Screens/MainStack/DoctorDetails";
+import Details from "../Screens/MainStack/Details";
 import NewAppointment from "../Screens/MainStack/NewAppointment";
 import Notifications from "../Screens/MainStack/Notifications";
 import Chat from "../Screens/MainStack/Chat";
@@ -11,7 +11,7 @@ import Favourites from "../Screens/MainStack/Favourites";
 import PaymentOptions from "../Screens/MainStack/PaymentOptions";
 import PasswordManager from "../Screens/MainStack/PasswordManager";
 import HelpCenter from "../Screens/MainStack/HelpCenter";
-import NotificationSettings from "../Screens/MainStack/NotificationSettings";
+import NotificationSettings from "../Screens/MainStack/AppPrefrences";
 import MyAppointment from "../Screens/MainStack/MyAppointment";
 import CancelAppointment from "../Screens/MainStack/CancelAppointment";
 import Filters from "../Screens/MainStack/Filters";
@@ -19,6 +19,8 @@ import AddCard from "../Screens/MainStack/AddCard";
 import ReviewSummary from "../Screens/MainStack/ReviewSummary";
 import PaymentSuccess from "../Screens/MainStack/PaymentSuccess";
 import ThemeSetting from "../Screens/MainStack/ThemeSetting";
+import DetailsScreen from "../Screens/MainStack/DetailsScreen";
+
 
 const Stack = createNativeStackNavigator()
 
@@ -32,7 +34,7 @@ const MainStack = () =>{
         }}>   
                     <Stack.Screen name={SCREENS.TABS} component={BottomTabNavigator} />
                     <Stack.Screen name={SCREENS.SEEALLDOCTORS} component={SeeAllDoctors} />
-                    <Stack.Screen name={SCREENS.DOCTORDETAILS} component={DoctorDetails} />
+                    <Stack.Screen name={SCREENS.DETAILS} component={DetailsScreen} />
                     <Stack.Screen name={SCREENS.NEWAPPOINTMENT} component={NewAppointment} />
                     <Stack.Screen name={SCREENS.NOTIFICATONS} component={Notifications} />
                     <Stack.Screen name={SCREENS.CHAT} component={Chat} />

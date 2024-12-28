@@ -61,12 +61,12 @@ const Welcome = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container} >
       <View style={styles.contentContainer}  >
-      <Svgs.Onboarding1 height={hp(55)} />
+      <Svgs.Welcome height={hp(55)} width={wp(150)} />
       <Text style={styles.heading} >Your <Text style={styles.highlightedText} >Everyday Doctor</Text> Appointment Medical App</Text>
       <Text style={styles.subHeading} >Talk to doctors, buy medications or request an ambulance with ease.</Text>
       </View>
       <View style={{paddingHorizontal: wp(7),}}>
-      <CustomButton containerStyle={styles.btn} text={'Sign Up'} textStyle={styles.btnText} onPress={()=>dispatch(setDarkMode(!isDarkMode)) }   />
+      <CustomButton containerStyle={styles.btn} text={'Sign Up'} textStyle={styles.btnText} onPress={()=>navigation.navigate(SCREENS.SIGNUP) }   />
       <CustomButton containerStyle={[styles.btn,{marginTop: hp(2)}]}  text={'Login '} textStyle={[styles.btnText, {color :isDarkMode? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryTextColor}]} mode={true} borderColor={Colors.lightTheme.BorderGrayColor} onPress={()=>navigation.navigate(SCREENS.LOGIN)} />
       </View>
     </SafeAreaView>

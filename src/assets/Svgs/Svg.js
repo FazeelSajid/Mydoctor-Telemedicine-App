@@ -5,6 +5,7 @@ import Google from "./Googlee.svg";
 import Facebook from "./facebook.svg";
 import Profile from "./profile1.svg";
 import DeleteMSVG from "./DeleteModalSvg.svg";
+import Welcome from "./welcome.svg";
 export const  Svgs = {
     Onboarding1,
     Onboarding2,
@@ -12,6 +13,7 @@ export const  Svgs = {
     Google,
     Profile,
     Facebook,
-    DeleteMSVG
+    DeleteMSVG,
+    Welcome
 
 }

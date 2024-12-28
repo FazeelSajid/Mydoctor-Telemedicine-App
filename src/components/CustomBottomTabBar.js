@@ -26,15 +26,17 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         paddingHorizontal: 10,
         height: 40,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     tabText: {
-        alignSelf: 'center',
-        color: Colors.lightTheme.primaryColor,
+       
+        textAlign: 'center',
+        color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
         fontFamily: Fonts.Regular,
         fontSize: normalizeFontSize(10),
-        marginTop: scaleHeight(10)
+        // marginTop: scaleHeight(10)
     },
+
 
 });
     return (
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
                     <TouchableOpacity
                         key={route.key}
                         onPress={onPress}
-                        style={[styles.tabButton, isFocused && {backgroundColor: `${isDarkMode?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}40`}]}
+                        style={[styles.tabButton, isFocused && {backgroundColor: `${isDarkMode?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}40`,height: 50}]}
                     >
                         {/* Icon */}
                         <View style={{ position: 'relative' }}>
@@ -70,6 +72,8 @@ const styles = StyleSheet.create({
                                 size={30} color={isFocused
                                     ? isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor
                                     : isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor} />
+                                    {/* <Text style={[styles.tabText, isFocused && {color: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}]} >{label}</Text> */}
+
                           
                         </View>
                     </TouchableOpacity>

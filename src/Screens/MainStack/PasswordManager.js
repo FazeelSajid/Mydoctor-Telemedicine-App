@@ -10,12 +10,14 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import TxtInput from '../../components/TextInput/Txtinput';
 import CustomButton from '../../components/Buttons/customButton';
+import { useAlert } from '../../Providers/AlertContext';
 
 const PasswordManager = ({navigation}) => {
   const { isDarkMode } = useSelector(store => store.theme);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+    const { showAlert } = useAlert();
 
 
 
@@ -59,18 +61,27 @@ const PasswordManager = ({navigation}) => {
       textDecorationLine: 'underline'
     },
   })
+
+
+
+
   return (
     <View style={styles.container} >
        <StackHeader title={'Password Manager'}/>
       <View>
-        <Text style={styles.label} >Current Password</Text>
+        {/* <Text style={styles.label} >Current Password</Text>
         <TxtInput placeholder={'Current Password'} style={{ width: wp(90) }} value={currentPassword} secureTextEntry={true} onChangeText={setCurrentPassword} containerStyle={{ paddingHorizontal: wp(2) }} />
-        <CustomButton text={'Forget Password?'} textStyle={styles.forgetText} containerStyle={{ width: wp(40), alignSelf: 'flex-end' }} onPress={() => navigation.navigate(SCREENS.FORGET)} />
+        <CustomButton text={'Forget Password?'} textStyle={styles.forgetText} containerStyle={{ width: wp(40), alignSelf: 'flex-end' }} onPress={() => navigation.navigate(SCREENS.FORGET)} /> */}
         <Text style={styles.label} >Password</Text>
         <TxtInput placeholder={'New Password'} style={{ width: wp(90) }} inputStyle={{}} value={newPassword} onChangeText={setNewPassword} secureTextEntry={true} containerStyle={{ paddingHorizontal: wp(2) }} />
         <Text style={[styles.label, {marginTop: hp(2)}]} >Confirm New Password</Text>
         <TxtInput placeholder={'Confirm Password'} style={{ width: wp(90) }} inputStyle={{}} value={confirmPassword} onChangeText={setConfirmPassword} secureTextEntry={true} containerStyle={{ paddingHorizontal: wp(2) }} />
-        <CustomButton containerStyle={styles.btn} text={'Change Password'} textStyle={[styles.btnText, {color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor,}]} onPress={()=> navigation.goBack()} />
+        <CustomButton containerStyle={styles.btn} text={'Change Password'} textStyle={[styles.btnText, {color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor,}]} onPress={()=> {
+           showAlert('Password Updated Successfully', 'success');
+           setTimeout(() => {
+             navigation.goBack()
+           }, 2500);
+        }} />
 
       </View>
 

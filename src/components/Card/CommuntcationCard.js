@@ -37,7 +37,7 @@ const CommunicationCard = ({ iconName, title, subtitle, backgroundColor, onPress
         subtitle: {
             fontSize: RFPercentage(1.8),
            fontFamily: Fonts.Regular,
-            color: isDarkMode? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
+            color: isDarkMode? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor,
         },
     });
     return (

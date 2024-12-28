@@ -10,11 +10,14 @@ import { Colors } from '../../Constants/themeColors';
 import { Fonts } from '../../Constants/Fonts';
 import CustomButton from '../../components/Buttons/customButton';
 import TxtInput from '../../components/TextInput/Txtinput';
+import { useAlert } from '../../Providers/AlertContext';
 
-const CancelAppointment = ({navigation}) => {
-    const [selectedReason, setSelectedReason] = useState('');
+const CancelAppointment = ({ navigation }) => {
     const [reason, setReason] = useState('');
     const { isDarkMode } = useSelector(store => store.theme);
+    const [selectedReason, setSelectedReason] = useState('');
+    const { showAlert } = useAlert();
+
 
 
     const reasons = [
@@ -53,7 +56,7 @@ const CancelAppointment = ({navigation}) => {
         otherLabel: {
             fontSize: RFPercentage(2),
             fontFamily: Fonts.Medium,
-            color: '#333',
+            color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor,
             marginTop: hp('2%'),
             marginBottom: hp('1%'),
         },
@@ -91,7 +94,7 @@ const CancelAppointment = ({navigation}) => {
             <StackHeader title={'Cancel Appointment'} />
 
             {/* Instructions */}
-            <View style={{ paddingHorizontal: wp('5%'), flexGrow :1 }}>
+            <View style={{ paddingHorizontal: wp('5%'), flexGrow: 1 }}>
                 <Text style={styles.instructionText}>
                     Please let us know the reason for your cancellation so that we can better serve you, we care about your health.
                 </Text>
@@ -116,18 +119,24 @@ const CancelAppointment = ({navigation}) => {
 
                 {/* Other Reason Input */}
                 {selectedReason === 'Others' && (
-                    
-                    <View style={{flexGrow:1}} > 
+
+                    <View style={{ flexGrow: 1 }} >
                         <Text style={styles.otherLabel}>Others</Text>
-                            
+                        <TxtInput placeholder={'Describe your problem'} style={{ flex: 1, marginBottom: hp(4), }} value={reason} onChangeText={setReason} containerStyle={{ paddingHorizontal: wp(3), }} multiline={true} numberOfLines={5} />
+
                     </View>
                 )}
 
                 {/* Cancel Appointment Button */}
                 <View>
-                    <CustomButton containerStyle={styles.btn} text={'Update Profile'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => navigation.goBack()} />
+                    <CustomButton containerStyle={styles.btn} text={'Cancel Appointment'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => {
+                        showAlert('Appointment Cancelled Successfully', 'success');
+                        setTimeout(() => {
+                            navigation.goBack();
+                        }, 2500);
+                    }} />
                 </View>
-         
+
             </View>
 
 

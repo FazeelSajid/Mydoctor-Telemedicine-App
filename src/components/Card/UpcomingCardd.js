@@ -26,12 +26,12 @@ const UpcomingCard = () => {
         },
         doctorName: {
           fontSize: RFPercentage(2.4),
-          color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.white,
+          color: isDarkMode? Colors.lightTheme.primaryTextColor: Colors.white,
           fontFamily: Fonts.Bold
         },
         specialization: {
           fontSize: RFPercentage(2),
-          color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.white,
+          color: isDarkMode? Colors.lightTheme.primaryTextColor: Colors.white,
           fontFamily: Fonts.Medium,
           marginVertical: hp(0.5),
         },

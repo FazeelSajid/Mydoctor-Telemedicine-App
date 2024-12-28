@@ -10,17 +10,18 @@ import TxtInput from '../../components/TextInput/Txtinput';
 import { Fonts } from '../../Constants/Fonts';
 import { TouchableOpacity } from 'react-native';
 import { SCREENS } from '../../Constants/Screens';
+import { Images } from '../../assets/Images/images';
 
 
 const doctors = [
-    { id: '1', name: 'Dr. Taiwo', specialization: 'Oncologists', rating: '4.3', reviews: '130', image: 'https://avatar.iran.liara.run/public/48' },
-    { id: '2', name: 'Dr. Johnson', specialization: 'Pediatrician', rating: '4.8', reviews: '280', image: 'https://avatar.iran.liara.run/public/43' },
-    { id: '3', name: 'Dr. Kenny', specialization: 'Psychologist', rating: '4.3', reviews: '130', image: 'https://avatar.iran.liara.run/public/44' },
-    { id: '4', name: 'Dr. Gidado', specialization: 'Neuro Surgeon', rating: '4.8', reviews: '280', image: 'https://avatar.iran.liara.run/public/49' },
-    { id: '5', name: 'Dr. Bala', specialization: 'Virologist', rating: '4.3', reviews: '130', image: 'https://avatar.iran.liara.run/public/50' },
-    { id: '6', name: 'Dr. Johnson', specialization: 'Radiologist', rating: '4.8', reviews: '280', image: 'https://avatar.iran.liara.run/public/42' },
-    { id: '7', name: 'Dr. Taiwo', specialization: 'Oncologists', rating: '4.3', reviews: '130', image: 'https://avatar.iran.liara.run/public/48' },
-    { id: '8', name: 'Dr. Gidado', specialization: 'Neuro Surgeon', rating: '4.8', reviews: '280', image: 'https://avatar.iran.liara.run/public/49' },
+    { id: '1', name: 'Dr. Taiwo', specialization: 'Oncologists', rating: '4.3', reviews: '130', image: Images.dr1 },
+    { id: '2', name: 'Dr. Johnson', specialization: 'Pediatrician', rating: '4.8', reviews: '280', image: Images.dr2  },
+    { id: '3', name: 'Dr. Kenny', specialization: 'Psychologist', rating: '4.3', reviews: '130', image: Images.dr3 },
+    { id: '4', name: 'Dr. Gidado', specialization: 'Neuro Surgeon', rating: '4.8', reviews: '280', image: Images.dr4 },
+    { id: '5', name: 'Dr. Bala', specialization: 'Virologist', rating: '4.3', reviews: '130', image: Images.dr2 },
+    { id: '6', name: 'Dr. Johnson', specialization: 'Radiologist', rating: '4.8', reviews: '280', image: Images.dr3 },
+    { id: '7', name: 'Dr. Taiwo', specialization: 'Oncologists', rating: '4.3', reviews: '130', image: Images.dr1 },
+    { id: '8', name: 'Dr. Gidado', specialization: 'Neuro Surgeon', rating: '4.8', reviews: '280', image: Images.dr4 },
 
 ];
 
@@ -29,8 +30,8 @@ const SeeAllDoctors = ({navigation}) => {
 
     const { isDarkMode } = useSelector(store => store.theme);
     const renderDoctorCard = ({ item }) => (
-        <TouchableOpacity onPress={()=> navigation.navigate(SCREENS.DOCTORDETAILS)} style={styles.card}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+        <TouchableOpacity onPress={()=> navigation.navigate(SCREENS.DETAILS, {who: 'doctor'})} style={styles.card}>
+            <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.specialization}>{item.specialization}</Text>
             <View style={styles.ratingContainer}>

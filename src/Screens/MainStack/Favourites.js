@@ -10,6 +10,8 @@ import { Fonts } from '../../Constants/Fonts';
 import StackHeader from '../../components/Header/StackHeader';
 import CustomButton from '../../components/Buttons/customButton';
 import { AirbnbRating } from 'react-native-ratings';
+import { SCREENS } from '../../Constants/Screens';
+import { Images } from '../../assets/Images/images';
 
 const dummyData = {
   doctor: [
@@ -17,7 +19,7 @@ const dummyData = {
       id: '1',
       name: 'Dr. Kenny Adeola',
       specialty: 'General practitioner',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr1,
       reviews: '52 Reviews',
       rating: 4.5,
     },
@@ -25,7 +27,7 @@ const dummyData = {
       id: '2',
       name: 'Dr. Taiwo Abdulsalaam',
       specialty: 'General practitioner',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr2,
       reviews: '56 Reviews',
       rating: 4.8,
     },
@@ -35,7 +37,7 @@ const dummyData = {
       id: '1',
       name: 'PharmaCare Plus',
       specialty: '24/7 Service',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.pharmacy,
       reviews: '30 Reviews',
       rating: 4.2,
     },
@@ -43,7 +45,7 @@ const dummyData = {
       id: '2',
       name: 'HealthMed Pharmacy',
       specialty: 'Prescription Drugs',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.pharmacy,
       reviews: '45 Reviews',
       rating: 4.6,
     },
@@ -53,7 +55,7 @@ const dummyData = {
       id: '1',
       name: 'FastResponse Ambulance',
       specialty: 'Emergency Service',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.ambulance,
       reviews: '70 Reviews',
       rating: 4.7,
     },
@@ -61,7 +63,7 @@ const dummyData = {
       id: '2',
       name: 'CareFirst Ambulance',
       specialty: 'Non-Emergency Transport',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.ambulance,
       reviews: '55 Reviews',
       rating: 4.4,
     },
@@ -83,18 +85,18 @@ const Favourites = ({navigation}) => {
   const AmbulanceTab = () => (
     <FlatList
       data={dummyData.ambulance}
-      renderItem={({ item }) => <Card item={item} />}
+      renderItem={({ item }) => <Card item={item} who={'ambulance'} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.listContainer}
     />
   );
 
 
-  const Card = ({ item }) => (
-    <View style={styles.card}>
+  const Card = ({ item , who}) => (
+    <TouchableOpacity onPress={() =>navigation.navigate(SCREENS.DETAILS, {who: who})}  style={styles.card}>
       {/* Item Image */}
       <View style={{ flexDirection: 'row' }} >
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={item.image} style={styles.image} />
         {/* Item Details */}
         <View style={styles.detailsContainer}>
           <View style={styles.titleContainer}>
@@ -122,14 +124,14 @@ const Favourites = ({navigation}) => {
           {/* Button */}
         </View>
       </View>
-      <CustomButton containerStyle={styles.btn} text={'Make Appointment'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => navigation.goBack()} />
-    </View>
+      <CustomButton containerStyle={styles.btn} text={'Make Appointment'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => navigation.navigate(SCREENS.NEWAPPOINTMENT, { title: 'Make Appointment' })} />
+    </TouchableOpacity>
   );
 
   const DoctorTab = () => (
     <FlatList
       data={dummyData.doctor}
-      renderItem={({ item }) => <Card item={item} />}
+      renderItem={({ item }) => <Card item={item} who={'doctor'} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.listContainer}
     />
@@ -138,7 +140,7 @@ const Favourites = ({navigation}) => {
   const PharmacyTab = () => (
     <FlatList
       data={dummyData.pharmacy}
-      renderItem={({ item }) => <Card item={item} />}
+      renderItem={({ item }) => <Card item={item} who={'pharmacy'} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.listContainer}
     />

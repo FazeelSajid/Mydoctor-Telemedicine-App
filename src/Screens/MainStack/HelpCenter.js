@@ -95,7 +95,7 @@ const HelpCenterScreen = () => {
       color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
     },
     activeTabText: {
-      color: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor,
     },
     content: {
       flex: 1,
@@ -119,10 +119,10 @@ const HelpCenterScreen = () => {
     categoryTabText: {
       fontSize: RFPercentage(1.8),
       fontFamily: Fonts.Regular,
-      color: isDarkMode? Colors.darkTheme.secondryTextColor: Colors.lightTheme.secondryTextColor,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.secondryTextColor,
     },
     activeCategoryTabText: {
-      color: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.secondryColor,
+      color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.secondryColor,
     },
     faqContainer: {
       flexDirection: 'row',

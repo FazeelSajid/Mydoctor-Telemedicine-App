@@ -6,6 +6,7 @@ import {
     FlatList,
     StyleSheet,
     Modal,
+    ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -14,7 +15,7 @@ import { Fonts } from '../../Constants/Fonts';
 import { useSelector } from 'react-redux';
 import { Colors } from '../../Constants/themeColors';
 
-const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => {
+const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder,textStyle  }) => {
     const [isVisible, setIsVisible] = useState(false);
     const { isDarkMode } = useSelector(store => store.theme);
 
@@ -37,7 +38,7 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
             borderRadius: wp(2),
             paddingVertical: hp(1.5),
             paddingHorizontal: wp(4),
-            elevation: 2,
+            // elevation: 2,
             borderWidth: 1,
             borderColor: isVisible? isDarkMode?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor : isDarkMode ? Colors.darkTheme.BorderGrayColor : Colors.lightTheme.BorderGrayColor,
         },
@@ -45,6 +46,11 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
             fontSize: RFPercentage(2),
             fontFamily: Fonts.Regular,
             color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
+        },
+        notSelectedText: {
+            fontSize: RFPercentage(2),
+            fontFamily: Fonts.Regular,
+            color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
         },
 
         dropdownContainer: {
@@ -62,8 +68,8 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
             alignItems: 'center',
             paddingVertical: hp(1.2),
             paddingHorizontal: wp(2),
-            borderBottomWidth: 1,
-            borderBottomColor: isDarkMode ? Colors.darkTheme.BorderGrayColor : Colors.lightTheme.BorderGrayColor,
+            // borderBottomWidth: 1,
+            // borderBottomColor: isDarkMode ? Colors.darkTheme.BorderGrayColor : Colors.lightTheme.BorderGrayColor,
         },
         itemText: {
             fontSize: RFPercentage(2),
@@ -82,7 +88,7 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
                 style={styles.dropdownButton}
                 onPress={() => setIsVisible(!isVisible)}
             >
-                <Text style={styles.selectedText}>
+                <Text style={[ selectedValue ?styles.selectedText: styles.notSelectedText ,]}>
                     {selectedValue || placeholder || 'Select an option'}
                 </Text>
                 <Icon
@@ -94,7 +100,27 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
 
             {/* Modal for dropdown */}
             {isVisible && (
-                <View style={styles.dropdownContainer}>
+                <ScrollView style={styles.dropdownContainer}>
+                    {/* <FlatList data={data}  renderItem={({item, index}) => {
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={styles.dropdownItem}
+                                    onPress={() => handleSelect(item)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.itemText,
+                                            selectedValue === item && styles.selectedItemText,
+                                        ]}
+                                    >
+                                        {item}
+                                    </Text>
+                                    {selectedValue === item && (
+                                        <Icon name="check" size={wp(5)} color={isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor} />
+                                    )}
+                                </TouchableOpacity>
+                            )}} /> */}
                     {
                         data.map((item, index) => {
                             return (
@@ -118,7 +144,7 @@ const CustomDropDown = ({ data, selectedValue, onValueChange, placeholder }) => 
                             )
                         })
                     }
-                </View>
+                </ScrollView>
             )}
         </View>
     );

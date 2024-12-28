@@ -12,6 +12,7 @@ import { Fonts } from '../../../Constants/Fonts';
 import RBSheetConfirmation from '../../../components/BottomSheets/RBSheetConfirmation';
 import { Svgs } from '../../../assets/Svgs/Svg';
 import { setDarkMode } from '../../../redux/Slices/Theme';
+import { Images } from '../../../assets/Images/images';
 
 
 const Profile = ({ navigation }) => {
@@ -100,11 +101,11 @@ const Profile = ({ navigation }) => {
 
   const profileOptions = [
     { id: '1', name: 'Profile', icon: 'person-outline', screen: SCREENS.UPDATEPROFILE },
-    { id: '2', name: 'Favorite', icon: 'favorite-outline', screen: SCREENS.FAVORITES },
+    { id: '2', name: 'Favorites', icon: 'favorite-outline', screen: SCREENS.FAVORITES },
     { id: '3', name: 'Help Center', icon: 'help-outline', screen: SCREENS.HELPCENTER },
     { id: '4', name: 'Privacy Policy', icon: 'security', screen: SCREENS.TERMSANDCONDITION },
-    { id: '5', name: 'Notification Settings', icon: 'notifications-none', screen: SCREENS.NOTIFICATIONSETTINGS },
-    { id: '6', name: 'Theme Settings', icon: 'theme-light-dark', screen: SCREENS.THEMESETTINGS },
+    { id: '5', name: 'App Preference', icon: 'settings', screen: SCREENS.NOTIFICATIONSETTINGS },
+    // { id: '6', name: 'Theme Settings', icon: 'theme-light-dark', screen: SCREENS.THEMESETTINGS },
     { id: '7', name: 'Payment Options', icon: 'payment', screen: SCREENS.PAYMENTOPTION },
     { id: '8', name: 'Password Manager', icon: 'lock-outline', screen: SCREENS.PASSWORDMANAGER },
     { id: '9', name: 'Log out', icon: 'logout', screen: SCREENS.MESSAGES, button: true, action: () => logout_Ref.current.open() },
@@ -116,16 +117,14 @@ const Profile = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <StackHeader title={'Profile'} rightIcon={<MaterialCommunityIcons name='theme-light-dark' size={RFPercentage(4)} color={isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor} onPress={() => dispatch(setDarkMode(!isDarkMode))} />} />
+      <StackHeader title={'Profile'}  />
 
       <View style={styles.profileContainer}>
         <Image
-          source={{ uri: 'https://avatar.iran.liara.run/public/43' }} // Replace with actual image
+          source={ Images.dr2} // Replace with actual image
           style={styles.profileImage}
         />
-        <TouchableOpacity style={styles.editIcon} >
-          <Icon name="edit" size={RFPercentage(2.5)} color={isDarkMode ? Colors.darkTheme.backgroundColor : Colors.lightTheme.backgroundColor} />
-        </TouchableOpacity>
+        
         <Text style={styles.profileName}>Adewole Abdulazeez</Text>
       </View>
 

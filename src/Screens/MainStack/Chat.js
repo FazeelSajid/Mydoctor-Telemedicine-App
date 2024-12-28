@@ -61,7 +61,9 @@ const Chat = () => {
       >
         {item.text}
       </Text>
-      <Text style={styles.messageTime}>{item.time}</Text>
+      <Text style={[styles.messageTime, item.sender === 'user'
+            ? styles.userMessageText
+            : styles.doctorMessageText,]}>{item.time}</Text>
     </View>
   );
 
@@ -154,7 +156,7 @@ const Chat = () => {
       <View style={styles.inputContainer}>
       <TxtInput placeholder={'Message...'} style={{ flex:1,  }} value={inputMessage} onChangeText={setInputMessage} containerStyle={{ paddingHorizontal: wp(3), borderColor: isDarkMode ? Colors.darkTheme.BorderGrayColor: Colors.lightTheme.BorderGrayColor  }} />
         <TouchableOpacity style={styles.sendButton} onPress={handleSendMessage}>
-         <Ionicons name='navigate' size={wp(6)} color={{backgroundColor: isDarkMode? Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}} />
+         <Ionicons name='navigate' size={wp(6)} color={Colors.white} />
         </TouchableOpacity>
       </View>
     </View>

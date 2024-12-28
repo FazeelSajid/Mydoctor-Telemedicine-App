@@ -17,6 +17,7 @@ import {
   import { Fonts } from '../../Constants/Fonts';
   import { useSelector } from 'react-redux';
   import { Colors } from '../../Constants/themeColors';
+import { Images } from '../../assets/Images/images';
   const ChatHeader = ({title, profile, rightIcon}) => {
     const navigation = useNavigation();
       const { isDarkMode } = useSelector(store => store.theme);
@@ -65,7 +66,7 @@ import {
             <Ionicons name={'arrow-back-outline'} size={hp(3)} color={isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.secondryTextColor} />
           </TouchableOpacity>
           {/* <View style={{backgroundColor: Colors.lightTheme.primaryColor, paddingHorizontal: wp(4),paddingVertical: wp(2.2), borderRadius: wp(10),marginRight: wp(2) }} ><Text style={{color: Colors.lightTheme.primaryBtn.TextColor, fontSize: RFPercentage(2.4), padding: 0, fontFamily: Fonts.PlusJakartaSans_Regular}} >Dr smith</Text></View> */}
-           <Image source={{ uri: 'https://avatar.iran.liara.run/public/48' }} style={styles.doctorImage} />
+           <Image source={  Images.dr2 } style={styles.doctorImage} />
           <View style={styles.headerTextContainer}>
             <Text style={styles.mainText}>{title}</Text>
           </View>

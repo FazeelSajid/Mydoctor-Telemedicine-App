@@ -1,10 +1,10 @@
-import DoctorDetails from "../Screens/MainStack/DoctorDetails";
 
-export const SCREENS = {
+export let SCREENS = {
     ONBOARDING: 'Onboarding',
     WELCOME: 'Welcome',
     LOGIN: 'Login',
     SIGNUP: 'Signup',
+    PROGRESS: 'Progress',
     VERIFYCODE: 'VerifyCode',
     FORGET: 'Forget',
     RESETPASSWORD: 'ResetPassword',
@@ -13,12 +13,13 @@ export const SCREENS = {
     MESSAGES: 'Messages',
     BOOKING: 'Booking',
     SEEALL: 'SeeALL',
+    DETAILS: 'Details',
     PROFILE: 'Profile',
     TERMSANDCONDITION: 'TermsAndCondition',
     DASHBOARD : 'dashboard',
     TABS: 'Tabs',
     SEEALLDOCTORS: 'SeeAllDoctors',
-    DOCTORDETAILS: 'DoctorDetails',
+    // DOCTORDETAILS: 'DoctorDetails',
     NEWAPPOINTMENT: 'NewAppointment',
     NOTIFICATONS: 'Notifications',
     CHAT: 'Chat',

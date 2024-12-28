@@ -8,6 +8,7 @@ import StackHeader from '../../components/Header/StackHeader';
 import { useSelector } from 'react-redux';
 import { Colors } from '../../Constants/themeColors';
 import { Fonts } from '../../Constants/Fonts';
+import { Images } from '../../assets/Images/images';
 
 const MyAppointment = () => {
     const { isDarkMode } = useSelector(store => store.theme);
@@ -95,7 +96,7 @@ const MyAppointment = () => {
         infoRow: {
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginBottom: hp('1%'),
+            marginBottom: hp('2%'),
             marginTop: hp('0.3%'),
         },
         infoLabel: {
@@ -106,23 +107,21 @@ const MyAppointment = () => {
         infoValue: {
             fontSize: RFPercentage(1.8),
             fontFamily: Fonts.Regular,
-            color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
+            color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
             textAlign: 'right',
         },
     });
     return (
         <View style={styles.container}>
             {/* Header */}
-            <StackHeader title={'My Appointments'} headerStyle={{ paddingBottom: hp(1) }} rightIcon={<Icon name='magnify' size={wp(8)} color={isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor} />} />
+            <StackHeader title={'My Appointments'} headerStyle={{ paddingBottom: hp(1) }}  />
 
             {/* Doctor Info */}
             <View style={{ paddingHorizontal: wp(5), marginTop: hp(1) }} >
                 <View style={styles.doctorContainer}>
                     <View>
                         <Image
-                            source={{
-                                uri: 'https://avatar.iran.liara.run/public/43', // Replace with your image URL
-                            }}
+                            source={Images.dr2}
                             style={styles.doctorImage}
                         />
                         <TouchableOpacity style={styles.editIcon}>
@@ -172,7 +171,7 @@ const MyAppointment = () => {
                 </View>
 
                 {/* Patient Info */}
-                <View style={styles.sectionContainer}>
+                <View style={[styles.sectionContainer, {borderBottomWidth: 0}]}>
                     <Text style={styles.sectionTitle}>Patient Info.</Text>
                     <View style={styles.infoRow}>
                         <Text style={styles.infoLabel}>Full Name</Text>

@@ -7,28 +7,29 @@ import { useSelector } from 'react-redux';
 import { Colors } from '../../../Constants/themeColors';
 import { Fonts } from '../../../Constants/Fonts';
 import { SCREENS } from '../../../Constants/Screens';
+import { Images } from '../../../assets/Images/images';
 
 const contacts = [
   {
     id: '1',
-    name: 'Rehan Sajid',
+    name: 'Mr Smith',
     message: 'Sehi ha',
     time: '1:04 PM',
-    avatar: 'https://avatar.iran.liara.run/public/43', // Replace with actual image URL or asset
+    image: Images.dr1, // Replace with actual image URL or asset
   },
   {
     id: '2',
-    name: 'Ali Khan',
+    name: 'Mrs Smith',
     message: 'Meeting at 2 PM?',
     time: '12:30 PM',
-    avatar: 'https://avatar.iran.liara.run/public/44',
+    image: Images.dr2,
   },
   {
     id: '3',
-    name: 'Sarah Ahmed',
+    name: 'John Doe',
     message: 'Got it!',
     time: '11:15 AM',
-    avatar: 'https://avatar.iran.liara.run/public/40',
+    image: Images.dr3,
   },
 ];
 
@@ -57,6 +58,7 @@ const Messages = ({navigation}) => {
     },
     textContainer: {
       flex: 1,
+      
     },
     name: {
       color: isDarkMode? Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor,
@@ -76,7 +78,7 @@ const Messages = ({navigation}) => {
   
   const renderContact = ({ item }) => (
     <TouchableOpacity style={styles.contactContainer} onPress={()=>navigation.navigate(SCREENS.CHAT)} >
-      <Image source={{ uri: item.avatar }} style={styles.avatar} />
+      <Image source={item.image} style={styles.avatar} />
       <View style={styles.textContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.message}>{item.message}</Text>
@@ -88,12 +90,21 @@ const Messages = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StackHeader title={'Messages'}/>
+      <TouchableOpacity style={[styles.contactContainer, {marginHorizontal: wp(2), backgroundColor: `${isDarkMode?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}40`,elevation: 0}]} onPress={()=>navigation.navigate(SCREENS.CHAT)} >
+      <Image source={Images.dr4} style={styles.avatar} />
+      <View style={styles.textContainer}>
+        <Text style={styles.name}>{'Smith Prestige'}</Text>
+        <Text style={[styles.message, {color:  `${isDarkMode?Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor}`}]}>{'Hey! join us at beach party '}</Text>
+      </View>
+      <Text style={[styles.time, {color:  `${isDarkMode?Colors.darkTheme.primaryTextColor: Colors.lightTheme.primaryTextColor}`}]}>{'10:09 Pm'}</Text>
+    </TouchableOpacity>
       <FlatList
         data={contacts}
         keyExtractor={(item) => item.id}
         renderItem={renderContact}
         style={{paddingHorizontal: wp(2)}}
       />
+        
     </View>
   );
 };

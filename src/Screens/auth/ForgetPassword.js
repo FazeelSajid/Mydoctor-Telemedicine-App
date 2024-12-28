@@ -25,7 +25,7 @@ const ForgetPassword = ({navigation}) => {
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [phone_no, setPhone_no] = useState('');
+  const [Email, setEmail] = useState('');
   const [index, setIndex] = useState(0); // 0 = forget password screen, 1 = verify code screen
   const [value, setValue] = useState('');
 
@@ -34,12 +34,12 @@ const ForgetPassword = ({navigation}) => {
 
   // Validation function
   const validatePhoneNumber = () => {
-    if (!phone_no || phone_no.length === 0) {
-      showAlert('Please Enter Phone Number', 'error');
+    if (!Email || Email.length === 0) {
+      showAlert('Please Enter Email Address', 'error');
       return false;
     }
-    if (!/^\d{10,15}$/.test(phone_no)) {
-      showAlert('Please Enter a valid phone number', 'error');
+    if (!/\S+@\S+\.\S+/.test(Email)) {
+      showAlert('Please Enter a Valid Email Address', 'error');
       return false;
     }
     return true;
@@ -200,23 +200,23 @@ const ForgetPassword = ({navigation}) => {
           <View style={styles.screenTitleContainer}>
             <Text style={styles.screenTitle}>Forget Password</Text>
             <Text style={[styles.screenDesc, { width: scaleWidth(300) }]}>
-              Please enter your phone number below. We will send you a 6-digit code to reset your password.
+              Please enter your email below. We will send you a 4-digit code to reset your password.
             </Text>
           </View>
 
           <TxtInput
-            rightIcon={'phone'}
+            rightIcon={'email'}
             rightIconSize={normalizeFontSize(25)}
             rightIconColor={
               isDarkMode
                 ? Colors.darkTheme.secondryTextColor
                 : Colors.lightTheme.secondryTextColor
             }
-            placeholder={'Phone Number'}
+            placeholder={'Email Address'}
             style={{ width: scaleWidth(330) }}
             containerStyle={{ paddingHorizontal: scaleWidth(10) }}
-            value={phone_no}
-            onChangeText={setPhone_no}
+            value={Email}
+            onChangeText={setEmail}
           />
         </View>
 
@@ -280,7 +280,11 @@ const ForgetPassword = ({navigation}) => {
   }
   const handleResetPassword = () => {
     if (validatePassword()) {
-      navigation.navigate(SCREENS.LOGIN)
+      showAlert('Password Reset Successfully', 'success');
+      setTimeout(() => {
+        navigation.navigate(SCREENS.LOGIN)
+      }, 2500);
+     
     }
   }
 

@@ -176,7 +176,7 @@ const PaymentSuccess = ({ navigation }) => {
             <View style={styles.buttonContainer}>
 
                 <CustomButton containerStyle={styles.btn} text={'View Appointment'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} onPress={() => navigation.navigate(SCREENS.MYAPPOINTMENT)} />
-                <CustomButton containerStyle={styles.btn} text={'Go to Home'} mode={true} textStyle={[styles.btnText]} onPress={() => navigation.goBack()} />
+                <CustomButton containerStyle={styles.btn} text={'Go to Home'} mode={true} textStyle={[styles.btnText]} onPress={() => navigation.navigate(SCREENS.TABS)} />
 
             </View>
         </View>

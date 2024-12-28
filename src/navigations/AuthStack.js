@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Welcome from '../Screens/auth/Welcome';
 import Signup from '../Screens/auth/SignUp/Signup';
 import MainStack from './MainStack';
+import ProgressScreen from '../Screens/auth/ProgressScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ const AuthStack = () => {
             <Stack.Screen name={SCREENS.RESETPASSWORD} component={ResetPassword} />
             <Stack.Screen name={SCREENS.SIGNUP} component={Signup} />
             <Stack.Screen name={SCREENS.TERMSANDCONDITION} component={TermsAndCondition} />
+            <Stack.Screen name={SCREENS.PROGRESS} component={ProgressScreen} />
             <Stack.Screen name={SCREENS.DASHBOARD} component={MainStack} />
         </Stack.Navigator>
     );

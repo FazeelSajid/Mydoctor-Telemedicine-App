@@ -9,6 +9,7 @@ import { Fonts } from '../../Constants/Fonts';
 import { Colors } from '../../Constants/themeColors';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../Constants/Screens';
+import { Images } from '../../assets/Images/images';
 
 const DoctorCard = ({ item }) => {
     const { isDarkMode } = useSelector(store => store.theme);
@@ -54,10 +55,12 @@ const DoctorCard = ({ item }) => {
             color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
         },
     })
+    console.log(item.who ,'who')
+    
     return (
-        <TouchableOpacity style={styles.doctorCard} onPress={() => navigation.navigate(SCREENS.DOCTORDETAILS)} >
+        <TouchableOpacity style={styles.doctorCard} onPress={() => navigation.navigate(SCREENS.DETAILS, {who: item.who})} >
             <View style={{ flexDirection: 'row' }} >
-                <Image source={{ uri: 'https://avatar.iran.liara.run/public/48' }} style={styles.doctorImage} />
+                <Image source={Images.dr2} style={styles.doctorImage} />
                 <View>
                     <Text style={styles.doctorName}>{item.name}</Text>
                     <Text style={styles.specialization}>{item.specialization ? item.specialization : item.location}</Text>
@@ -69,6 +72,11 @@ const DoctorCard = ({ item }) => {
                 </View>
             </View>
             <CustomButton icon={'arrow-right'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor} containerStyle={{ alignItems: 'center', justifyContent: 'center' }} />
+            {/* {
+                item.who === 'ambulance' ? <CustomButton icon={'phone'} iconSize={RFPercentage(3.2)} iconColor={isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.secondryTextColor} containerStyle={{ alignItems: 'center', justifyContent: 'center', backgroundColor: isDarkMode?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor, paddingHorizontal: wp(2), height: hp(5), alignSelf: 'center', borderRadius: wp(6) }} />:
+            } */}
+            
+            
 
 
         </TouchableOpacity>

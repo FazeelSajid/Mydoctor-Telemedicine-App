@@ -70,7 +70,7 @@ const Login = ({navigation}) => {
       color: isDarkMode?Colors.darkTheme.secondryBtn.TextColor : Colors.lightTheme.secondryBtn.TextColor,
     },
     forgetText: {
-      color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
+      color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor,
       fontSize: normalizeFontSize(14),
       fontFamily: Fonts.Regular,
       marginTop: scaleHeight(10),
@@ -131,7 +131,7 @@ const Login = ({navigation}) => {
         <TxtInput placeholder={'Enter email or phone number'} style={{ width: scaleWidth(330) }} value={value} onChangeText={setValue} containerStyle={{ paddingHorizontal: scaleWidth(10) }} />
         <Text style={styles.label} >Password</Text>
         <TxtInput placeholder={'Enter Password'} style={{ width: scaleWidth(330) }} inputStyle={{}} value={password} onChangeText={setPassword} secureTextEntry={true} containerStyle={{ paddingHorizontal: scaleWidth(10) }} />
-        <CustomButton text={'Forget Password?'} textStyle={styles.forgetText} containerStyle={{ width: scaleWidth(120), alignSelf: 'flex-end' }} onPress={()=> navigation.navigate(SCREENS.FORGET)} />
+        <CustomButton text={'Forgot Password?'} textStyle={styles.forgetText} containerStyle={{ width: scaleWidth(120), alignSelf: 'flex-end' }} onPress={()=> navigation.navigate(SCREENS.FORGET)} />
         <CustomButton containerStyle={styles.btn} text={'Sign In'} textStyle={[styles.btnText, {color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor,}]} onPress={()=> handleLogin()} />
         <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: scaleHeight(20)}} >
         <Text style={[styles.OrTxt, {textAlign: 'center'}]}>

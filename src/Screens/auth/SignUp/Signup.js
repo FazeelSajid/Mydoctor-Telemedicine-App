@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -20,9 +21,17 @@ import CustomButton from '../../../components/Buttons/customButton';
 import { SCREENS } from '../../../Constants/Screens';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, setEmail, password, setPassword, isDarkMode, handleNext, styles }) => {
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
- 
+import CustomDropDown from '../../../components/DropDown/CustomDropDown';
+import { Images } from '../../../assets/Images/images';
+import CameraBottomSheet from '../../../components/BottomSheets/CameraBottomSheet';
+import { useRef } from 'react';
+const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, setEmail, password, setPassword, isDarkMode, handleNext, styles, navigation, image, cameraSheet_ref }) => {
+  const Genders = [
+    'Male', 'Female', 'Others', 'Preferred not to say',
+  ];
+
 
   return (
     <ScrollView style={styles.contentContainer}>
@@ -30,8 +39,23 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
       <Text style={styles.subText}>
         Don't worry only you can see your personal info{'\n'}no one else will be able to see it
       </Text>
-      <View style={styles.profileImage}>
-        <Svgs.Profile />
+      <View style={styles.profileContainer}>
+        {
+          image?  <Image
+          source={{ uri: image.path }} // Replace with actual image
+          style={styles.profileImage}
+        />:
+        <Image
+          source={Images.profile} // Replace with actual image
+          style={styles.profileImage}
+        />
+
+        }
+        
+        
+        <TouchableOpacity style={styles.editIcon} onPress={()=> cameraSheet_ref.current.open()} >
+          <Icon name="edit" size={RFPercentage(2.5)} color={isDarkMode ? Colors.darkTheme.backgroundColor : Colors.lightTheme.backgroundColor} />
+        </TouchableOpacity>
       </View>
       <TxtInput
         placeholder={'Full Name'}
@@ -40,16 +64,16 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
         value={name}
         onChangeText={setName}
       />
-      <TxtInput
-        placeholder={'Gender'}
-        style={{ width: wp(88), marginBottom: hp(2.3) }}
-        containerStyle={{ paddingHorizontal: wp(3) }}
-        value={gender}
-        onChangeText={setGender}
+      <CustomDropDown
+        data={Genders}
+        selectedValue={gender}
+        onValueChange={setGender}
+        placeholder="Select Gender..."
+        textStyle={{ color: gender ? isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor : isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor }}
       />
       <TxtInput
         placeholder={'Email'}
-        style={{ width: wp(88), marginBottom: hp(2.3) }}
+        style={{ width: wp(88), marginVertical: hp(2.3) }}
         containerStyle={{ paddingHorizontal: wp(3) }}
         value={email}
         onChangeText={setEmail}
@@ -59,6 +83,7 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
         style={{ width: wp(88), marginBottom: hp(2.3) }}
         containerStyle={{ paddingHorizontal: wp(3) }}
         value={password}
+        secureTextEntry={true}
         onChangeText={setPassword}
       />
       <Text style={styles.subText}>
@@ -80,6 +105,21 @@ const CompleteProfile = React.memo(({ name, setName, gender, setGender, email, s
         ]}
         onPress={handleNext}
       />
+      {/* <Text style={styles.OrTxt}>Or sign up with</Text> */}
+      {/* <View style={[styles.rowView, { height: scaleHeight(40) }]}>
+        <CustomButton svg={<Svgs.Facebook height={scaleHeight(40)} width={scaleWidth(40)} />} />
+        <CustomButton svg={<Svgs.Google height={scaleHeight(40)} width={scaleWidth(40)} />} />
+      </View> */}
+      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: hp(2.3) }} >
+        <Text style={[styles.OrTxt, { textAlign: 'center' }]}>
+          Already have an account?
+        </Text>
+        <CustomButton
+          text={' Sign In'}
+          onPress={() => navigation.navigate(SCREENS.LOGIN)}
+          textStyle={[styles.OrTxt, { textAlign: 'center', color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor }]}
+        />
+      </View>
     </ScrollView>
   );
 });
@@ -108,20 +148,20 @@ const SignUp1 = React.memo(({ phone_no, setPhone_no, isDarkMode, handleSignUp, n
         onPress={handleSignUp}
       />
       <Text style={styles.OrTxt}>Or sign up with</Text>
-      <View style={[styles.rowView, { height: scaleHeight(40) }]}>
-        <CustomButton svg={<Svgs.Facebook height={scaleHeight(40)} width={scaleWidth(40)} />} />
-        <CustomButton svg={<Svgs.Google height={scaleHeight(40)} width={scaleWidth(40)} />} />
-      </View>
-      <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: hp(2.3)}} >
-        <Text style={[styles.OrTxt, {textAlign: 'center'}]}>
-        Already have an account?
-      </Text>
-      <CustomButton
+      {/* <View style={[styles.rowView, { height: scaleHeight(40) }]}> */}
+      {/* <CustomButton svg={<Svgs.Facebook height={scaleHeight(40)} width={scaleWidth(40)} />} /> */}
+      <CustomButton svg={<Svgs.Google height={scaleHeight(40)} width={scaleWidth(40)} />} containerStyle={{ alignSelf: 'center' }} />
+      {/* </View> */}
+      <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: hp(2.3) }} >
+        <Text style={[styles.OrTxt, { textAlign: 'center' }]}>
+          Already have an account?
+        </Text>
+        <CustomButton
           text={' Sign In'}
           onPress={() => navigation.navigate(SCREENS.LOGIN)}
-          textStyle={[styles.OrTxt, {textAlign: 'center', color: isDarkMode ?Colors.darkTheme.primaryColor: Colors.lightTheme.primaryColor}]}
+          textStyle={[styles.OrTxt, { textAlign: 'center', color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor }]}
         />
-        </View>
+      </View>
     </View>
   );
 });
@@ -135,71 +175,77 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [phone_no, setPhone_no] = useState('');
   const [index, setIndex] = useState(0);
+  const [image, setImage] = useState('');
+
+  const cameraSheet_ref = useRef()
+
+
 
   const validate = useCallback(() => {
 
-      if (!name || name.length === 0) {
-        showAlert('Please Enter Name', 'error');
-        return false;
-      } else if (name.length < 3) {
-        showAlert('Name must be at least 3 characters long', 'error');
-        return false;
-      }
-      if (!gender || gender.length === 0) {
-        showAlert('Please Enter Gender', 'error');
-        return false;
-      }
-      if (!email || email.length === 0) {
-        showAlert('Please Enter Email Address', 'error');
-        return false;
-      } else if (!/\S+@\S+\.\S+/.test(email)) {
-        showAlert('Please Enter a Valid Email Address', 'error');
-        return false;
-      }
-      if (!password || password.length === 0) {
-        showAlert('Please Enter Password', 'error');
-        return false;
-      } else if (password.length < 8) {
-        showAlert('Password must be at least 8 characters long', 'error');
-        return false;
-      }
-  
+    if (!name || name.length === 0) {
+      showAlert('Please Enter Name', 'error');
+      return false;
+    } else if (name.length < 3) {
+      showAlert('Name must be at least 3 characters long', 'error');
+      return false;
+    }
+    if (!gender || gender.length === 0) {
+      showAlert('Please Enter Gender', 'error');
+      return false;
+    }
+    if (!email || email.length === 0) {
+      showAlert('Please Enter Email Address', 'error');
+      return false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      showAlert('Please Enter a Valid Email Address', 'error');
+      return false;
+    }
+    if (!password || password.length === 0) {
+      showAlert('Please Enter Password', 'error');
+      return false;
+    } else if (password.length < 8) {
+      showAlert('Password must be at least 8 characters long', 'error');
+      return false;
+    }
+
 
     return true;
   }, [name, gender, email, password, showAlert]);
-
   const validate2 = () => {
     if (!phone_no || phone_no.trim().length === 0) {
       showAlert('Please enter a phone number', 'error');
       return false;
     }
-  
+
+    // Updated regex for 10-15 digits
     if (!/^\d{10,15}$/.test(phone_no)) {
       showAlert('Please enter a valid phone number (10-15 digits)', 'error');
       return false;
     }
-  
+
     // If all validations pass
     return true;
   };
 
+
   const handleNext = useCallback(() => {
     console.log('handleNext');
-    
 
-      if (validate()) {
-        setIndex(1);
-      }
 
-    
+    if (validate()) {
+      setIndex(1);
+    }
+
+
   }, [validate]);
 
 
   const handleSignUp = useCallback(() => {
-    if (validate2()) {
-      console.log('Sign Up');
-      
-    }
+    showAlert('Signed Up Successfully', 'success');
+    setTimeout(() => {
+      navigation.navigate(SCREENS.PROGRESS)
+    }, 2500);
   }, [])
   const styles = StyleSheet.create({
     container: {
@@ -217,6 +263,28 @@ const Signup = ({ navigation }) => {
       width: wp(35)
 
     },
+    profileContainer: {
+      alignItems: 'center',
+      marginVertical: hp('3%'),
+
+    },
+    profileImage: {
+      width: wp('25%'),
+      height: wp('25%'),
+      borderRadius: wp('12.5%'),
+      marginBottom: hp('1%'),
+      backgroundColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColors
+    },
+    editIcon: {
+      position: 'absolute',
+      bottom: 0,
+      right: wp('30%'),
+      backgroundColor: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor,
+      borderRadius: wp('5%'),
+      padding: wp('2%'),
+      borderWidth: wp(0.5),
+      borderColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColor
+    },
     seprator: {
       height: hp(0.4),
       backgroundColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.BorderGrayColor,
@@ -227,30 +295,16 @@ const Signup = ({ navigation }) => {
       paddingHorizontal: wp(5.7),
     },
     heading: {
-      fontSize:  RFPercentage(2.5),
+      fontSize: RFPercentage(2.5),
       color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
       fontFamily: Fonts.Bold,
-      marginTop:  RFPercentage(1.6),
-      marginBottom:  RFPercentage(1.6),
+      marginTop: RFPercentage(1.6),
+      marginBottom: RFPercentage(1.6),
     },
     subText: {
       fontSize: RFPercentage(1.7),
       fontFamily: Fonts.Regular,
       color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
-      // backgroundColor: 'green'
-    },
-    profileImage: {
-      borderWidth: 1,
-      borderColor: isDarkMode ? Colors.darkTheme.BorderGrayColor:Colors.lightTheme.BorderGrayColor,
-      width: wp(27),
-      height: hp(12.4),
-      borderRadius: wp(27) / 2,
-      alignSelf: 'center',
-      marginBottom: 30,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: isDarkMode ? Colors.darkTheme.secondryColor : Colors.lightTheme.secondryColor,
-      marginTop: hp(4)
     },
     btn: {
       backgroundColor: isDarkMode ? Colors.darkTheme.primaryBtn.BtnColor : Colors.lightTheme.primaryBtn.BtnColor,
@@ -275,7 +329,7 @@ const Signup = ({ navigation }) => {
       marginBottom: scaleHeight(15),
 
     },
- signInText: {
+    signInText: {
       color: isDarkMode ? Colors.darkTheme.primaryColor : Colors.lightTheme.primaryColor,
       fontSize: normalizeFontSize(14),
       fontFamily: Fonts.Regular,
@@ -286,7 +340,7 @@ const Signup = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StackHeader title={'Sign Up'} headerView={{ marginLeft: scaleWidth(20) }} headerStyle={{}} />
+      <StackHeader title={'Sign Up'} headerView={{ marginLeft: scaleWidth(20) }} headerStyle={{ paddingLeft: 0 }} onBackPress={()=> index === 1? setIndex(0): navigation.goBack() } />
       <View style={styles.rowView}>
         <TouchableOpacity
           style={[
@@ -316,6 +370,9 @@ const Signup = ({ navigation }) => {
           isDarkMode={isDarkMode}
           handleNext={handleNext}
           styles={styles}
+          navigation={navigation}
+          image={image}
+          cameraSheet_ref = {cameraSheet_ref}
 
         />
       ) : (
@@ -328,6 +385,19 @@ const Signup = ({ navigation }) => {
           styles={styles}
         />
       )}
+
+
+
+      <CameraBottomSheet
+        refRBSheet={cameraSheet_ref}
+        onPick = {(image) => setImage(image)}
+        // onCameraPick={img => {
+        //   img && handleUploadImage(img);
+        // }}
+        // onGalleryPick={img => {
+        //   img && handleUploadImage(img);
+        // }}
+      />
     </SafeAreaView>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { TabView, SceneMap, TabBar, TabBarItem } from 'react-native-tab-view';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -10,6 +10,9 @@ import StackHeader from '../../../components/Header/StackHeader';
 import { Fonts } from '../../../Constants/Fonts';
 import CustomButton from '../../../components/Buttons/customButton';
 import { SCREENS } from '../../../Constants/Screens';
+import { Images } from '../../../assets/Images/images';
+import { title } from 'process';
+import CRBSheetComponent from '../../../components/BottomSheets/CRBSheetComponent';
 
 const dummyData = {
   upcoming: [
@@ -20,7 +23,7 @@ const dummyData = {
       date: 'Nov 19, 2023 - 9:00 AM',
       bookingId: '#12345A67B',
       status: 'Online',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr1,
     },
     {
       id: '2',
@@ -29,7 +32,7 @@ const dummyData = {
       date: 'Nov 26, 2023 - 9:00 AM',
       bookingId: '#48345e27C',
       status: 'Offline',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr2,
     },
   ],
   completed: [
@@ -39,7 +42,7 @@ const dummyData = {
       specialty: 'General practitioner',
       date: 'Nov 19, 2023 - 9:00 AM',
       bookingId: '#12345A67B',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr3,
     },
     {
       id: '2',
@@ -47,7 +50,7 @@ const dummyData = {
       specialty: 'General practitioner',
       date: 'Nov 26, 2023 - 9:00 AM',
       bookingId: '#48345e27C',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr4,
     },
   ],
   cancelled: [
@@ -57,7 +60,7 @@ const dummyData = {
       specialty: 'General practitioner',
       date: 'Nov 19, 2023 - 9:00 AM',
       bookingId: '#12345A67B',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr1,
     },
     {
       id: '2',
@@ -65,7 +68,7 @@ const dummyData = {
       specialty: 'General practitioner',
       date: 'Nov 26, 2023 - 9:00 AM',
       bookingId: '#48345e27C',
-      image: 'https://avatar.iran.liara.run/public/43',
+      image: Images.dr2,
     },
   ],
 };
@@ -73,6 +76,7 @@ const dummyData = {
 const AllAppointment = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   const { isDarkMode } = useSelector(store => store.theme);
+  const reviewSheet_Ref = useRef()
   const [routes] = useState([
     { key: 'upcoming', title: 'Upcoming' },
     { key: 'completed', title: 'Completed' },
@@ -83,7 +87,7 @@ const AllAppointment = ({ navigation }) => {
     <TouchableOpacity onPress={onPress} style={styles.card}>
       <Text style={styles.date}>{item.date}</Text>
       <View style={styles.cardContent}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={item.image} style={styles.image} />
         <View style={styles.details}>
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.specialty}>{item.specialty}</Text>
@@ -120,7 +124,7 @@ const AllAppointment = ({ navigation }) => {
               }}>
               <CustomButton containerStyle={[styles.btn]} mode={true} text={'Cancel'} textStyle={[styles.btnText]} onPress={()=>navigation.navigate(SCREENS.CANCELAPPOINTMENT)} />
 
-              <CustomButton containerStyle={[styles.btn]} text={'Reschedule'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} />
+              <CustomButton containerStyle={[styles.btn]} text={'Reschedule'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]}  onPress={()=> navigation.navigate(SCREENS.NEWAPPOINTMENT, {title: 'Reschedule Appointment'})}/>
 
 
             </View>
@@ -138,9 +142,10 @@ const AllAppointment = ({ navigation }) => {
       renderItem={({ item }) => (
         <Card
           item={item}
+          onPress={() => navigation.navigate(SCREENS.MYAPPOINTMENT)}
           actionButtons={
             <>
-              <CustomButton containerStyle={[styles.btn]} mode={true} text={'Re-Book'} textStyle={[styles.btnText]} />
+              <CustomButton containerStyle={[styles.btn]} mode={true} text={'Re-Book'} textStyle={[styles.btnText]}  onPress={()=> navigation.navigate(SCREENS.NEWAPPOINTMENT, {title: 'Re-Book Appointment'})}/>
 
               <CustomButton containerStyle={[styles.btn]} text={'Add a Review'} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} />
 
@@ -160,6 +165,7 @@ const AllAppointment = ({ navigation }) => {
       renderItem={({ item }) => (
         <Card
           item={item}
+          onPress={() => navigation.navigate(SCREENS.MYAPPOINTMENT)}
           actionButtons={
             <CustomButton containerStyle={[styles.btn, { width: wp(80) }]} text={'Add a Review '} textStyle={[styles.btnText, { color: isDarkMode ? Colors.darkTheme.primaryBtn.TextColor : Colors.lightTheme.primaryBtn.TextColor, }]} />
           }
@@ -298,6 +304,7 @@ const AllAppointment = ({ navigation }) => {
           />
         )}
       />
+
     </View>
   );
 };

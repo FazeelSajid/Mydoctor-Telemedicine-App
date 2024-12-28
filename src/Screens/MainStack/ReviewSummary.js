@@ -10,6 +10,7 @@ import { Colors } from '../../Constants/themeColors';
 import { Fonts } from '../../Constants/Fonts';
 import CustomButton from '../../components/Buttons/customButton';
 import { SCREENS } from '../../Constants/Screens';
+import { Images } from '../../assets/Images/images';
 
 const ReviewSummary = ({navigation}) => {
     const { isDarkMode } = useSelector(store => store.theme);
@@ -54,8 +55,8 @@ const ReviewSummary = ({navigation}) => {
         },
         doctorSpeciality: {
             fontSize: RFPercentage(1.8),
-            fontFamily: Fonts.Regular,
-            color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
+            fontFamily: Fonts.Thin,
+            color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
             marginVertical: hp('0.5%'),
         },
         locationContainer: {
@@ -103,7 +104,7 @@ const ReviewSummary = ({navigation}) => {
         infoLabel: {
             fontSize: RFPercentage(1.9),
             fontFamily: Fonts.Regular,
-            color: isDarkMode ? Colors.darkTheme.secondryTextColor : Colors.lightTheme.secondryTextColor,
+            color: isDarkMode ? Colors.darkTheme.primaryTextColor : Colors.lightTheme.primaryTextColor,
         },
         infoValue: {
             fontSize: RFPercentage(1.8),
@@ -147,9 +148,7 @@ const ReviewSummary = ({navigation}) => {
                 <View style={styles.doctorContainer}>
                     <View>
                         <Image
-                            source={{
-                                uri: 'https://avatar.iran.liara.run/public/43', // Replace with your image URL
-                            }}
+                            source={Images.dr2}
                             style={styles.doctorImage}
                         />
                         <TouchableOpacity style={styles.editIcon}>

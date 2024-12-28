@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Colors } from '../../Constants/themeColors';
 import { Fonts } from '../../Constants/Fonts';
 
-const StatCard = ({ iconName, value, label, iconColor }) => {
+const StatCard = ({ icon, value, label, iconColor }) => {
     const { isDarkMode } = useSelector(store => store.theme);
 
     const styles = StyleSheet.create({
@@ -48,7 +48,8 @@ const StatCard = ({ iconName, value, label, iconColor }) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.iconContainer}>
-                <Icon name={iconName} size={RFPercentage(3)} color={iconColor} />
+                {/* <Icon name={iconName} size={RFPercentage(3)} color={iconColor} /> */}
+                {icon}
             </View>
                 <Text style={styles.value}>{value}</Text>
                 <Text style={styles.label}>{label}</Text>

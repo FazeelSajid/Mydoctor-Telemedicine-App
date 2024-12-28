@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Colors } from '../../Constants/themeColors';
 import { Svgs } from '../../assets/Svgs/Svg';
-import Swiper from 'react-native-swiper';
 import { scaleHeight, scaleWidth, normalizeFontSize } from '../../utils/responsive';
 import CustomButton from '../../components/Buttons/customButton';
 import { Fonts } from '../../Constants/Fonts';
 import PagerView from 'react-native-pager-view';
 import { SCREENS } from '../../Constants/Screens';
-import { setDarkMode } from '../../redux/Slices/Theme';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+import images from '../../assets/Images/onboarding1.png';
+import { Images } from '../../assets/Images/images';
 const Onboarding = ({navigation}) => {
   const { isDarkMode } = useSelector(store => store.theme);
   // 7:09 68%
@@ -19,17 +21,17 @@ const Onboarding = ({navigation}) => {
   
   const pages = [
       {
-          image: <Svgs.Onboarding1/>,
+          image: Images.onboarding2,
           title: 'Talk to a Doctor',
           subtitle: 'Connects Patient with Doctor who shares their language and ethnicity',
       },
       {
-          image: <Svgs.Onboarding2/>,
+          image: Images.onboarding1,
           title: 'Call an ambulance',
           subtitle: 'Request for an ambulance 24/7 through MyDoctor app',
       },
       {
-          image: <Svgs.Onboarding3/>,
+          image: Images.onboarding3,
           title: 'Schedule an appointment',
           subtitle: 'Schedule an appointment with a certified doctor on MyDoctor app',
       },
@@ -146,7 +148,7 @@ const Onboarding = ({navigation}) => {
       >
         {pages.map((page, index) => (
           <View key={index} style={styles.imgContainer}>
-            {page.image}
+            <Image source={page.image} style={{ width: scaleWidth(300), height: scaleHeight(300) }}/>
             <Text style={styles.text}>{page.title}</Text>
             {page.subtitle && (
               <Text
